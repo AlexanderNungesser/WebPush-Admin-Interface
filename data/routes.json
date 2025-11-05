@@ -1,0 +1,10 @@
+[
+    {"id": 1, "rfrom": "*", "rto": "#", "name": "howtos"},
+    {"id": 2, "rfrom": "*", "rto": "howto_simplepage.html", "name": "howto_simple_page", "parent": 1},
+    {"id": 3, "rfrom": "*", "rto": "howto_sitemap.html", "name": "howto_sitemap", "parent": 1},
+    {"id": 4, "rfrom": "*", "rto": "howto_language.html", "name": "howto_language", "parent": 1},
+    {"id": 20, "rfrom": "*", "rto": "#", "name": "predefined_pages"},
+    {"id": 21, "rfrom": "*", "rto": "index.html", "name": "predefined_startpage", "parent": 20},
+    {"id": 22, "rfrom": "*", "rto": "about/imprint.html", "name": "predefined_imprint", "parent": 20},
+    {"id": 23, "rfrom": "*", "rto": "about/privacy.html", "name": "predefined_privacy", "parent": 20}
+]

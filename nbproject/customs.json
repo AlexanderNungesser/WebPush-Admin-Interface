@@ -1,0 +1,12 @@
+{
+    "elements": {},
+    "attributes": {
+        "uk-cover": {
+            "context": "img"
+        },
+        "uk-icon": {
+            "context": "span"
+        },
+        "swa": {}
+    }
+}
