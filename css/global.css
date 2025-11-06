@@ -2,7 +2,7 @@ html,
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .logo {
@@ -48,6 +48,7 @@ body footer a {
 .main_content {
     max-height: 100%;
     padding: 20px;
+    overflow: auto;
 }
 
 .layout {
