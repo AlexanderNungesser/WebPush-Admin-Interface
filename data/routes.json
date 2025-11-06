@@ -21,16 +21,16 @@
         "parent": ""
     },
     {
-        "id": 21,
+        "id": 30,
         "rfrom": "*",
-        "rto": "#",
+        "rto": "analytics.html",
         "name": "Analytics",
         "parent": ""
     },
     {
         "id": 40,
         "rfrom": "*",
-        "rto": "#",
+        "rto": "settings.html",
         "name": "Settings",
         "parent": ""
     }

@@ -29,10 +29,11 @@ body>footer {
     width: 100%;
     background: #f0f0f0;
     text-align: center;
+    align-content: center;
 }
 
 body footer a {
-    color: rgb(112, 112, 112)
+    color: rgb(112, 112, 112);
 }
 
 
