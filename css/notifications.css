@@ -1,0 +1,45 @@
+.grid_container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 150px;
+    gap: 10px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f0f0f0;
+}
+
+.grid_item {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.form_container {
+    width: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    padding-right: 1%;
+    flex: 0 0 25%;
+}
+
+.content_wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+#all_notifications {
+    flex: 1 1 75%;
+    min-width: 300px;
+    overflow-y: scroll;
+}

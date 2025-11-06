@@ -1,5 +1,4 @@
 document.addEventListener("swac_components_complete", () => {
-    console.log("HIER")
     const navLinks = document.querySelectorAll("#side_navigation .nav_link");
     const current = window.location.pathname.split("/").pop();
     navLinks.forEach(link => {
