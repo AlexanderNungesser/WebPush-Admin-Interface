@@ -1,7 +1,37 @@
 [
-    {"id": 1, "rfrom": "*", "rto": "#", "name": "home"},
-    {"id": 10, "rfrom": "*", "rto": "notifications.html", "name": "notifications"},
-    {"id": 20, "rfrom": "*", "rto": "#", "name": "history"},
-    {"id": 30, "rfrom": "*", "rto": "#", "name": "analytics"},
-    {"id": 40, "rfrom": "*", "rto": "#", "name": "settings"}
+    {
+        "id": 1,
+        "rfrom": "*",
+        "rto": "index.html",
+        "name": "Home",
+        "parent": ""
+    },
+    {
+        "id": 10,
+        "rfrom": "*",
+        "rto": "notifications.html",
+        "name": "Notifications",
+        "parent": ""
+    },
+    {
+        "id": 20,
+        "rfrom": "*",
+        "rto": "#",
+        "name": "History",
+        "parent": ""
+    },
+    {
+        "id": 21,
+        "rfrom": "*",
+        "rto": "#",
+        "name": "Analytics",
+        "parent": ""
+    },
+    {
+        "id": 40,
+        "rfrom": "*",
+        "rto": "#",
+        "name": "Settings",
+        "parent": ""
+    }
 ]

@@ -77,7 +77,7 @@ function precache(files) {
  */
 function precacheComponent(componentName) {
     let component_root = SWAC_config.swac_root + '/swac/components/'
-            + componentName + '/';
+        + componentName + '/';
     let component_url = component_root + componentName + '.js';
     // Include main script
     self.importScripts(component_url);
@@ -203,18 +203,18 @@ function firstFromCacheThenNetwork(request) {
                 if (SWAC_config.debugmode)
                     console.log('SWAC ServiceWorker: >' + request.url + '< not found in cache.');
                 return fetch(request.clone()).then(
-                        function (fetched) {
-                            if (SWAC_config.debugmode)
-                                console.log('SWAC ServiceWorker: >' + request.url + '< was fresh fetched.');
-                            // Save to cache
-                            fetchToCache(request.clone());
-                            return fetched;
-                        }
+                    function (fetched) {
+                        if (SWAC_config.debugmode)
+                            console.log('SWAC ServiceWorker: >' + request.url + '< was fresh fetched.');
+                        // Save to cache
+                        fetchToCache(request.clone());
+                        return fetched;
+                    }
                 ).catch(
-                        function (error) {
-                            console.error('SWAC ServiceWorker: Could not get >' + request.url + '< from cache or network: ' + error);
-                            return useFallback(request);
-                        });
+                    function (error) {
+                        console.error('SWAC ServiceWorker: Could not get >' + request.url + '< from cache or network: ' + error);
+                        return useFallback(request);
+                    });
             }
         });
     }).catch(function (error) {
@@ -236,36 +236,36 @@ function firstFromNetworkThenCache(request) {
         console.log('SWAC ServiceWorker: try to get >' + request.url + '< from network first.');
 
     return fetch(request.clone()).then(
-            function (fetched) {
-                if (SWAC_config.debugmode)
-                    console.log('SWAC ServiceWorker: got >' + request.url + '< fresh from network.');
-                // Put to cache
-                fetchToCache(request.clone());
-                return fetched;
-            }
+        function (fetched) {
+            if (SWAC_config.debugmode)
+                console.log('SWAC ServiceWorker: got >' + request.url + '< fresh from network.');
+            // Put to cache
+            fetchToCache(request.clone());
+            return fetched;
+        }
     ).catch(
-            function (error) {
-                if (SWAC_config.debug)
-                    console.log('SWAC ServiceWorker: coult not get >' + request.url + '< from network try from cache.');
-                return caches.open('swac_sw_cache_' + serviceworker_version).then(function (cache) {
-                    return cache.match(request).then(
-                            function (matching) {
-                                if (SWAC_config.debugmode)
-                                    console.log('SWAC ServiceWorker: got >' + request.url + '< from cache instead of network.');
-                                return matching;
-                            }
-                    ).catch(
-                            function (error) {
-                                console.error('SWAC ServiceWorker: Could not get >' + request.url + '< from network or cache: ' + error);
-                                return useFallback(request);
-                            }
-                    );
-                }).catch(function (error) {
-                    //in case of no possible fetch an no match in cache, use fallback site
-                    console.error('SWAC ServiceWorker: Could not get >' + request.url + '< from network or cache: ' + error);
-                    return useFallback(request);
-                });
-            }
+        function (error) {
+            if (SWAC_config.debug)
+                console.log('SWAC ServiceWorker: coult not get >' + request.url + '< from network try from cache.');
+            return caches.open('swac_sw_cache_' + serviceworker_version).then(function (cache) {
+                return cache.match(request).then(
+                    function (matching) {
+                        if (SWAC_config.debugmode)
+                            console.log('SWAC ServiceWorker: got >' + request.url + '< from cache instead of network.');
+                        return matching;
+                    }
+                ).catch(
+                    function (error) {
+                        console.error('SWAC ServiceWorker: Could not get >' + request.url + '< from network or cache: ' + error);
+                        return useFallback(request);
+                    }
+                );
+            }).catch(function (error) {
+                //in case of no possible fetch an no match in cache, use fallback site
+                console.error('SWAC ServiceWorker: Could not get >' + request.url + '< from network or cache: ' + error);
+                return useFallback(request);
+            });
+        }
     );
 }
 
@@ -335,10 +335,10 @@ function useFallback(request) {
 function sendMessageToPages(message) {
     console.log('ServiceWorker self:');
     console.log(self);
-//    const clients = self.clients.matchAll();
-//    for (const client of clients) {
-//        client.postMessage('Message: ' + message);
-//    }
+    //    const clients = self.clients.matchAll();
+    //    for (const client of clients) {
+    //        client.postMessage('Message: ' + message);
+    //    }
 }
 
 

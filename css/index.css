@@ -4,7 +4,9 @@
     height: 450px;
     background: #000000;
 }
-.tron h1, .tron h3 {
+
+.tron h1,
+.tron h3 {
     color: #ffffff;
     margin: 0px;
     font-size: 4em;
@@ -14,4 +16,5 @@
 .midpos {
     width: 100%;
     text-align: center;
+    vertical-align: center;
 }

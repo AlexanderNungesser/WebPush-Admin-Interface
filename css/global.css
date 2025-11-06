@@ -1,6 +1,7 @@
 html {
     height: 100%;
-    box-sizing: border-box;	/* Box-size on border for footer */
+    box-sizing: border-box;
+    /* Box-size on border for footer */
 }
 
 /* Inherit box-sizing for footer stay on bottom on small pages, and at the end of page at large pages */
@@ -12,9 +13,10 @@ html {
 
 body {
     position: relative;
-    padding-bottom: 6rem;		/* Makes some padding for the footer */
-    min-height: 100%;
-    background-color: #e6ffcc;			
+    padding-bottom: 6rem;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .logo {
@@ -60,7 +62,7 @@ article {
 }
 
 /* footer */
-body > footer {
+body>footer {
     position: absolute;
     bottom: 0px;
     height: 100px;
@@ -69,10 +71,25 @@ body > footer {
     color: #ffffff;
     text-align: center;
 }
+
 body footer a {
     color: #ffffff;
 }
 
 .template {
     display: none;
+}
+
+#side_navigation {
+    width: 240px;
+    height: 100%;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.main_content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
 }

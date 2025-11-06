@@ -18,7 +18,7 @@ var SWAC_config = {
     // Backend connection settings
     datasources: [
         {
-            url: "/SWACtemplate/data/[fromName]"
+            url: "/WebPush-Admin-Interface/data/[fromName]"
         },
         {
             url: "/SmartData/smartdata/[iface]/[fromName]?storage=smartmonitoring",
@@ -31,17 +31,17 @@ var SWAC_config = {
                 delete: ['DELETE', 'records']
             }
         },
-//    {
-//        url: "/SmartMonitoringBackend/observedobject/[fromName]/[iface]",
-//        interfaces: {
-//            get: ['GET','get'],
-//            list: ['GET','list'],
-//            defs: ["GET",'definition'],
-//            create: ['POST','create'],
-//            update: ['UPDATE','update'],
-//            delete: ['DELETE','delete']
-//        }
-//    }
+        //    {
+        //        url: "/SmartMonitoringBackend/observedobject/[fromName]/[iface]",
+        //        interfaces: {
+        //            get: ['GET','get'],
+        //            list: ['GET','list'],
+        //            defs: ["GET",'definition'],
+        //            create: ['POST','create'],
+        //            update: ['UPDATE','update'],
+        //            delete: ['DELETE','delete']
+        //        }
+        //    }
     ],
     // Options for progressive webapp
     progressive: {
@@ -58,7 +58,8 @@ var SWAC_config = {
             // default data
             '/manifest.json',
             '/configuration.js',
-            '/data/routes.js'
+            '/data/routes.json',
+            '/js/navigation.js'
         ],
         // List components here that should be precached
         components: [
@@ -67,10 +68,10 @@ var SWAC_config = {
     },
     // Register OnlineReactions to be used here
     onlinereactions: [
-//    {
-//      path: SWAC_config.swac_root + '/swac/components/Upload/UploadOnReact.js',
-//      config: {}
-//    }
+        //    {
+        //      path: SWAC_config.swac_root + '/swac/components/Upload/UploadOnReact.js',
+        //      config: {}
+        //    }
     ]
 };
 
@@ -89,8 +90,8 @@ user_options.loggedinRedirects.set('user_example3.html', '../sites/user_example2
 
 // Links for footer navigation
 var footerlinks = [
-    {id: 1, rfrom: "*", rto: "datenschutz.html", name: "Datenschutzerklärung"},
-    {id: 2, rfrom: "*", rto: "impressum.html", name: "Impressum"},
-    {id: 3, rfrom: "*", rto: "haftung.html", name: "Haftungsausschluss"},
-    {id: 4, rfrom: "*", rto: "http://git01-ifm-min.ad.fh-bielefeld.de/scl/2015_03_SCL_SmartMonitoring_Frontend/wikis/home", name: "Über SmartMonitoring"}
+    { id: 1, rfrom: "*", rto: "datenschutz.html", name: "Datenschutzerklärung" },
+    { id: 2, rfrom: "*", rto: "impressum.html", name: "Impressum" },
+    { id: 3, rfrom: "*", rto: "haftung.html", name: "Haftungsausschluss" },
+    { id: 4, rfrom: "*", rto: "http://git01-ifm-min.ad.fh-bielefeld.de/scl/2015_03_SCL_SmartMonitoring_Frontend/wikis/home", name: "Über SmartMonitoring" }
 ];
