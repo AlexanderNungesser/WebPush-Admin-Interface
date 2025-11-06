@@ -23,7 +23,8 @@
                 "title": "Sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Achievement freigeschaltet!",
@@ -49,7 +50,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Vergiss nicht die Luftdaten!",
@@ -75,7 +77,8 @@
                 "title": "Jetzt sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "once"
     },
     {
         "title": "Level-Up!",
@@ -101,7 +104,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Erinnerung: Daten sammeln",
@@ -127,7 +131,8 @@
                 "title": "Jetzt sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Achievement freigeschaltet!",
@@ -153,7 +158,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Fast geschafft!",
@@ -179,7 +185,8 @@
                 "title": "Sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "once"
     },
     {
         "title": "Neue Herausforderung!",
@@ -205,7 +212,8 @@
                 "title": "Starten",
                 "icon": "https://example.com/icons/start.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Glückwunsch!",
@@ -231,7 +239,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Erinnerung: Luftdaten",
@@ -257,7 +266,8 @@
                 "title": "Jetzt sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Achievement freigeschaltet!",
@@ -283,7 +293,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Neue Mission verfügbar!",
@@ -309,7 +320,8 @@
                 "title": "Starten",
                 "icon": "https://example.com/icons/start.png"
             }
-        ]
+        ],
+        "trigger": "once"
     },
     {
         "title": "Motivation!",
@@ -335,7 +347,8 @@
                 "title": "Sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Achievement freigeschaltet!",
@@ -361,7 +374,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "once"
     },
     {
         "title": "Erinnerung: Luftdaten erfassen",
@@ -387,7 +401,8 @@
                 "title": "Jetzt sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Level-Up!",
@@ -413,7 +428,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Neue Herausforderung!",
@@ -439,7 +455,8 @@
                 "title": "Starten",
                 "icon": "https://example.com/icons/start.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Fast geschafft!",
@@ -465,7 +482,8 @@
                 "title": "Sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Achievement freigeschaltet!",
@@ -491,7 +509,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Erinnerung: Luftdaten sammeln",
@@ -517,7 +536,8 @@
                 "title": "Jetzt sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Zeit für deine Luftdaten!",
@@ -543,7 +563,8 @@
                 "title": "Sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "once"
     },
     {
         "title": "Achievement freigeschaltet!",
@@ -569,7 +590,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "once"
     },
     {
         "title": "Vergiss nicht die Luftdaten!",
@@ -595,7 +617,8 @@
                 "title": "Jetzt sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Level-Up!",
@@ -621,7 +644,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Erinnerung: Daten sammeln",
@@ -647,7 +671,8 @@
                 "title": "Jetzt sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "time"
     },
     {
         "title": "Achievement freigeschaltet!",
@@ -673,7 +698,8 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "once"
     },
     {
         "title": "Fast geschafft!",
@@ -699,7 +725,8 @@
                 "title": "Sammeln",
                 "icon": "https://example.com/icons/collect.png"
             }
-        ]
+        ],
+        "trigger": "once"
     },
     {
         "title": "Neue Herausforderung!",
@@ -725,7 +752,8 @@
                 "title": "Starten",
                 "icon": "https://example.com/icons/start.png"
             }
-        ]
+        ],
+        "trigger": "event"
     },
     {
         "title": "Glückwunsch!",
@@ -751,6 +779,7 @@
                 "title": "Ansehen",
                 "icon": "https://example.com/icons/view.png"
             }
-        ]
+        ],
+        "trigger": "event"
     }
 ]

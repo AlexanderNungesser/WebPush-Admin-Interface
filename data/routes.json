@@ -16,7 +16,7 @@
     {
         "id": 20,
         "rfrom": "*",
-        "rto": "#",
+        "rto": "history.html",
         "name": "History",
         "parent": ""
     },

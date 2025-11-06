@@ -19,10 +19,10 @@
 
 <body>
     <div class="layout">
-        <aside id="side_navigation" swa="Navigation FROM ../data/routes.json TEMPLATE webPush"></aside>
+        <aside id="side_navigation" swa="Navigation FROM ../data/routes.json TEMPLATE nav_webPush"></aside>
         <main class="main_content">
             <div class="content_wrapper">
-                <div id="all_notifications" swa="Present FROM example_push_notifications.json TEMPLATE webPush"></div>
+                <div id="all_notifications" swa="Present FROM example_push_notifications.json TEMPLATE present_webPush_grid"></div>
                 <div class="form_container">
                     <h1 style="text-align: center;">Create your own Notifications</h1>
                     <p style="text-align: center;">Here you can create and manage your WebPush notifications. Use the
@@ -81,7 +81,6 @@
                                 <input class="uk-input" id="tag" type="text" placeholder="notification-tag">
                             </div>
                         </div>
-
                         <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
                             <label class="uk-form-label">Flags</label>
                             <div>
@@ -95,7 +94,6 @@
                                 <label><input class="uk-checkbox" id="silent" type="checkbox"> Silent</label>
                             </div>
                         </div>
-
                         <div class="uk-margin">
                             <label class="uk-form-label" for="dir">Direction</label>
                             <div class="uk-form-controls">

@@ -1,16 +1,4 @@
-html {
-    height: 100%;
-    box-sizing: border-box;
-    /* Box-size on border for footer */
-}
-
-/* Inherit box-sizing for footer stay on bottom on small pages, and at the end of page at large pages */
-/**,
-*:before,
-*:after {
-    box-sizing: inherit;
-}*/
-
+html,
 body {
     display: flex;
     flex-direction: column;
@@ -35,10 +23,6 @@ article {
     color: #ffffff;
 }
 
-#siteheader {
-    height: 100px;
-}
-
 /* footer */
 body>footer {
     height: 100px;
@@ -57,23 +41,18 @@ body footer a {
 }
 
 #side_navigation {
-    width: 240px;
-    height: 100%;
     background-color: #f9f9f9;
     border-right: 1px solid #ddd;
-    overflow: hidden;
 }
 
 .main_content {
-    flex: 1;
-    overflow-y: auto;
+    max-height: 100%;
     padding: 20px;
 }
 
 .layout {
     display: flex;
-    flex: 1;
-    min-height: calc(100vh - 100px);
+    height: 95%;
 }
 
 a {

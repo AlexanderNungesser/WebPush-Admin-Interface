@@ -1,0 +1,182 @@
+[
+    {
+        "title": "Zeit für deine Luftdaten!",
+        "day": "2025-11-07",
+        "time": "08:00",
+        "trigger": "time"
+    },
+    {
+        "title": "Achievement freigeschaltet: 50 Datensätze!",
+        "day": "2025-11-07",
+        "time": "12:00",
+        "trigger": "event"
+    },
+    {
+        "title": "Vergiss nicht die Luftdaten heute!",
+        "day": "2025-11-07",
+        "time": "18:30",
+        "trigger": "time"
+    },
+    {
+        "title": "Level-Up! Du bist jetzt Stufe 5 🎉",
+        "day": "2025-11-08",
+        "time": "14:15",
+        "trigger": "event"
+    },
+    {
+        "title": "Neue Mission: Sammle Daten in deiner Umgebung 🌍",
+        "day": "2025-11-08",
+        "time": "09:00",
+        "trigger": "once"
+    },
+    {
+        "title": "Fast geschafft! Nur noch 5 Datensätze 💪",
+        "day": "2025-11-08",
+        "time": "16:00",
+        "trigger": "time"
+    },
+    {
+        "title": "Erinnerung: Luftdaten erfassen 🌬️",
+        "day": "2025-11-09",
+        "time": "07:45",
+        "trigger": "time"
+    },
+    {
+        "title": "Achievement freigeschaltet: 100 Datensätze 🏅",
+        "day": "2025-11-09",
+        "time": "13:00",
+        "trigger": "event"
+    },
+    {
+        "title": "Motivation! Dein nächstes Achievement wartet 🔥",
+        "day": "2025-11-09",
+        "time": "19:00",
+        "trigger": "time"
+    },
+    {
+        "title": "Neue Herausforderung verfügbar!",
+        "day": "2025-11-10",
+        "time": "10:30",
+        "trigger": "once"
+    },
+    {
+        "title": "Level-Up! Du bist jetzt Stufe 6 🚀",
+        "day": "2025-11-10",
+        "time": "15:00",
+        "trigger": "event"
+    },
+    {
+        "title": "Vergiss nicht, heute deine Daten zu erfassen 🌿",
+        "day": "2025-11-10",
+        "time": "18:45",
+        "trigger": "time"
+    },
+    {
+        "title": "Achievement freigeschaltet: 250 Datensätze 🌟",
+        "day": "2025-11-11",
+        "time": "11:15",
+        "trigger": "event"
+    },
+    {
+        "title": "Neue Mission: Daten in deiner Stadt 🏙️",
+        "day": "2025-11-11",
+        "time": "08:30",
+        "trigger": "once"
+    },
+    {
+        "title": "Erinnerung: Deine tägliche Sammlung wartet 🌬️",
+        "day": "2025-11-11",
+        "time": "17:00",
+        "trigger": "time"
+    },
+    {
+        "title": "Glückwunsch! Du hast alle Wochenmissionen abgeschlossen 🎯",
+        "day": "2025-11-12",
+        "time": "20:00",
+        "trigger": "event"
+    },
+    {
+        "title": "Fast geschafft! Noch ein paar Messungen 💪",
+        "day": "2025-11-12",
+        "time": "16:00",
+        "trigger": "time"
+    },
+    {
+        "title": "Level-Up! Willkommen auf Stufe 7 🎉",
+        "day": "2025-11-13",
+        "time": "13:45",
+        "trigger": "event"
+    },
+    {
+        "title": "Neue Mission: Parkdaten erfassen 🌳",
+        "day": "2025-11-13",
+        "time": "09:15",
+        "trigger": "once"
+    },
+    {
+        "title": "Vergiss nicht die Luftdaten heute!",
+        "day": "2025-11-13",
+        "time": "19:30",
+        "trigger": "time"
+    },
+    {
+        "title": "Achievement freigeschaltet: 500 Datensätze 🏆",
+        "day": "2025-11-14",
+        "time": "12:30",
+        "trigger": "event"
+    },
+    {
+        "title": "Erinnerung: Heute ist Datensammeltag 🌿",
+        "day": "2025-11-14",
+        "time": "08:00",
+        "trigger": "time"
+    },
+    {
+        "title": "Motivation! Nur noch ein paar Messungen 🔥",
+        "day": "2025-11-14",
+        "time": "17:15",
+        "trigger": "time"
+    },
+    {
+        "title": "Neue Herausforderung: Stadtmission verfügbar 🏙️",
+        "day": "2025-11-15",
+        "time": "10:00",
+        "trigger": "once"
+    },
+    {
+        "title": "Level-Up! Du bist jetzt Stufe 8 🚀",
+        "day": "2025-11-15",
+        "time": "14:00",
+        "trigger": "event"
+    },
+    {
+        "title": "Achievement freigeschaltet: 750 Datensätze 🌟",
+        "day": "2025-11-15",
+        "time": "19:00",
+        "trigger": "event"
+    },
+    {
+        "title": "Erinnerung: Luftdaten für heute fehlen noch 🌬️",
+        "day": "2025-11-16",
+        "time": "07:30",
+        "trigger": "time"
+    },
+    {
+        "title": "Fast geschafft! Du bist kurz vor dem nächsten Level 💪",
+        "day": "2025-11-16",
+        "time": "18:00",
+        "trigger": "time"
+    },
+    {
+        "title": "Achievement freigeschaltet: 1000 Datensätze 🏅",
+        "day": "2025-11-17",
+        "time": "11:00",
+        "trigger": "event"
+    },
+    {
+        "title": "Neue Mission: Sammle Daten in einem neuen Gebiet 🌍",
+        "day": "2025-11-17",
+        "time": "09:45",
+        "trigger": "once"
+    }
+]
