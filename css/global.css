@@ -25,7 +25,7 @@ article {
 
 /* footer */
 body>footer {
-    height: 100px;
+    height: 5%;
     width: 100%;
     background: #f0f0f0;
     text-align: center;
@@ -46,14 +46,14 @@ body footer a {
 }
 
 .main_content {
-    max-height: 100%;
+    flex: 1;
     padding: 20px;
     overflow: auto;
 }
 
 .layout {
-    display: flex;
     height: 95%;
+    display: flex;
 }
 
 a {
