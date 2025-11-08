@@ -1,0 +1,159 @@
+[
+    {
+        "id": "t1",
+        "type": "time",
+        "config": {
+            "interval": "daily",
+            "time": "08:00"
+        },
+        "last_triggered_at": "2025-11-01T08:00:00Z",
+        "active": true
+    },
+    {
+        "id": "t2",
+        "type": "event",
+        "config": {
+            "event_name": "user_signup",
+            "threshold": 1
+        },
+        "last_triggered_at": "2025-10-28T14:30:00Z",
+        "active": true
+    },
+    {
+        "id": "t3",
+        "type": "once",
+        "config": {
+            "metric": "cpu_usage",
+            "operator": ">",
+            "value": 85
+        },
+        "last_triggered_at": "2025-11-02T09:15:00Z",
+        "active": true
+    },
+    {
+        "id": "t4",
+        "type": "event",
+        "config": {
+            "url": "https://api.example.com/hook",
+            "method": "POST"
+        },
+        "last_triggered_at": "2025-11-03T11:45:00Z",
+        "active": false
+    },
+    {
+        "id": "t5",
+        "type": "once",
+        "config": {
+            "days": [
+                "Mon",
+                "Wed",
+                "Fri"
+            ],
+            "time": "12:00"
+        },
+        "last_triggered_at": "2025-11-07T12:00:00Z",
+        "active": true
+    },
+    {
+        "id": "t6",
+        "type": "time",
+        "config": {
+            "region": "EU",
+            "country": "DE"
+        },
+        "last_triggered_at": "2025-10-30T17:00:00Z",
+        "active": false
+    },
+    {
+        "id": "t7",
+        "type": "event",
+        "config": {
+            "action": "button_click",
+            "button_id": "save_btn"
+        },
+        "last_triggered_at": "2025-11-04T09:50:00Z",
+        "active": true
+    },
+    {
+        "id": "t8",
+        "type": "event",
+        "config": {
+            "endpoint": "/status",
+            "interval_sec": 300
+        },
+        "last_triggered_at": "2025-11-08T06:30:00Z",
+        "active": true
+    },
+    {
+        "id": "t9",
+        "type": "once",
+        "config": {
+            "table": "orders",
+            "column": "status",
+            "value": "shipped"
+        },
+        "last_triggered_at": "2025-11-06T15:12:00Z",
+        "active": true
+    },
+    {
+        "id": "t10",
+        "type": "event",
+        "config": {
+            "path": "/uploads/reports",
+            "extension": ".csv"
+        },
+        "last_triggered_at": "2025-11-02T10:45:00Z",
+        "active": false
+    },
+    {
+        "id": "t11",
+        "type": "time",
+        "config": {
+            "channel": "alerts",
+            "message_type": "critical"
+        },
+        "last_triggered_at": "2025-11-07T18:22:00Z",
+        "active": true
+    },
+    {
+        "id": "t12",
+        "type": "event",
+        "config": {
+            "sender": "alerts@example.com",
+            "subject_contains": "urgent"
+        },
+        "last_triggered_at": "2025-11-03T07:00:00Z",
+        "active": true
+    },
+    {
+        "id": "t13",
+        "type": "once",
+        "config": {
+            "event": "server_restart",
+            "server_id": "srv-42"
+        },
+        "last_triggered_at": "2025-11-01T02:30:00Z",
+        "active": true
+    },
+    {
+        "id": "t14",
+        "type": "time",
+        "config": {
+            "metric": "memory_usage",
+            "operator": ">",
+            "value": 90
+        },
+        "last_triggered_at": "2025-11-05T13:40:00Z",
+        "active": false
+    },
+    {
+        "id": "t15",
+        "type": "event",
+        "config": {
+            "script_path": "/scripts/cleanup.sh",
+            "run_as": "system"
+        },
+        "last_triggered_at": "2025-11-08T01:15:00Z",
+        "active": true
+    }
+]

@@ -22,21 +22,16 @@
         <aside id="side_navigation" swa="Navigation FROM ../data/routes.json TEMPLATE nav_webPush"></aside>
         <main class="main_content">
             <div class="content_wrapper">
-                <div id="all_notifications" swa="Present FROM example_push_notifications.json TEMPLATE present_webPush_grid"></div>
+                <div id="all_notifications" swa="Present FROM example_push_notifications.json TEMPLATE present_webPush_notifications"></div>
                 <div class="form_container">
-                    <h1 style="text-align: center;">Create your own Notifications</h1>
-                    <p style="text-align: center;">Here you can create and manage your WebPush notifications. Use the
-                        form below to create a new
-                        notification.
-                    </p>
-                    <form class="uk-form-stacked uk-margin-large-top">
+                    <h1 style="text-align: center;">Create a new Notification</h1>
+                    <form id="notification_form" class="uk-form-stacked uk-margin-large-top">
                         <div class="uk-margin">
                             <label class="uk-form-label" for="title">Notification Title</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="title" type="text" placeholder="Enter notification title">
+                                <input class="uk-input" id="title" type="text" placeholder="Enter notification title" required>
                             </div>
                         </div>
-
                         <div class="uk-margin">
                             <label class="uk-form-label" for="message">Notification Message</label>
                             <div class="uk-form-controls">
@@ -50,15 +45,6 @@
                                 <input class="uk-input" id="icon" type="url" placeholder="https://example.com/icon.png">
                             </div>
                         </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="badge">Badge URL</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="badge" type="url"
-                                    placeholder="https://example.com/badge.png">
-                            </div>
-                        </div>
-
                         <div class="uk-margin">
                             <label class="uk-form-label" for="image">Image URL</label>
                             <div class="uk-form-controls">
@@ -66,7 +52,6 @@
                                     placeholder="https://example.com/image.jpg">
                             </div>
                         </div>
-
                         <div class="uk-margin">
                             <label class="uk-form-label" for="vibrate">Vibrate Pattern</label>
                             <div class="uk-form-controls">
@@ -74,79 +59,85 @@
                                     placeholder="e.g. 100,50,100 (comma-separated ms)">
                             </div>
                         </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="tag">Tag</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="tag" type="text" placeholder="notification-tag">
-                            </div>
-                        </div>
+                        <label class="uk-form-label">Flags</label>
                         <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
-                            <label class="uk-form-label">Flags</label>
                             <div>
                                 <label><input class="uk-checkbox" id="renotify" type="checkbox"> Renotify</label>
-                            </div>
-                            <div>
-                                <label><input class="uk-checkbox" id="requireInteraction" type="checkbox"> Require
-                                    Interaction</label>
                             </div>
                             <div>
                                 <label><input class="uk-checkbox" id="silent" type="checkbox"> Silent</label>
                             </div>
                         </div>
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="dir">Direction</label>
-                            <div class="uk-form-controls">
-                                <select class="uk-select" id="dir">
-                                    <option value="">auto</option>
-                                    <option value="ltr">ltr</option>
-                                    <option value="rtl">rtl</option>
-                                </select>
+                        <label class="uk-form-label">Trigger</label>
+                        <div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
+                            <div>
+                                <input class="uk-input" id="trigger" type="text" placeholder="Select trigger with button --" readonly required>
+                            </div>
+                            <div>                   
+                                <button id="open-trigger-btn" class="uk-button"type="button">Select Trigger</button>
                             </div>
                         </div>
-
                         <div class="uk-margin">
-                            <label class="uk-form-label" for="lang">Language</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="lang" type="text" placeholder="en-US">
-                            </div>
+                        <label class="uk-form-label" for="channels">Actions</label>
+                        <div class="uk-form-controls">
+                            <select class="uk-select" id="select_actions" multiple required></select>
                         </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="timestamp">Timestamp</label>
-                            <div class="uk-form-controls">
-                                <input class="uk-input" id="timestamp" type="datetime-local">
-                            </div>
                         </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="data">Data (JSON)</label>
-                            <div class="uk-form-controls">
-                                <textarea class="uk-textarea" id="data" rows="3"
-                                    placeholder='{"url":"https://example.com","payloadId":123}'></textarea>
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label" for="actions">Actions (JSON array)</label>
-                            <div class="uk-form-controls">
-                                <textarea class="uk-textarea" id="actions" rows="4"
-                                    placeholder='[{"action":"open","title":"Open","icon":"https://..."}]'></textarea>
-                            </div>
-                        </div>
-
                         <div class="uk-margin uk-flex uk-flex-center">
                             <button class="uk-button uk-button-primary " type="submit">Create Notification</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </main>
+        </main>     
     </div>
     <footer>
         <a href="about/privacy.html">Privacy policy</a>
         <a href="about/imprint.html">Imprint </a>
     </footer>
+   <div id="popup-overlay" aria-hidden="true">
+        <div id="popup-window">
+            <div class="popup-header">
+                <h2>Select Trigger</h2>
+                <button id="popup-close" class="close-btn" aria-label="Schließen">×</button>
+            </div>
+            <div class="popup-content">
+                <div class="popup-left">
+                        <div id="all_triggers" swa="Present FROM example_triggers.json TEMPLATE present_webPush_triggers"></div>
+                </div>
+                <div class="popup-right">
+                    <h3>New Trigger</h3>
+                    <form id="trigger_form" class="uk-form-stacked uk-margin-large-top" >
+                        <div class="uk-margin">
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="channels">Type</label>
+                                <div class="uk-form-controls">
+                                    <select class="uk-select" id="select_actions" required>                   
+                                        <option value="time">Time</option>
+                                        <option value="event">Event</option>
+                                        <option value="once">Once</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label">Select Config</label>
+                            <div class="uk-form-controls">
+                                <div uk-form-custom="target: true">
+                                    <input type="file" id="file-upload" accept=".json,application/json" required>
+                                    <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-margin uk-flex uk-flex-center">
+                            <button class="uk-button uk-button-primary " type="submit">Create Trigger</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/notifications.js"></script>
     <script src="../js/navigation.js"></script>
 </body>
 
