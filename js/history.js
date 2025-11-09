@@ -1,5 +1,3 @@
-var currentHistoryStatistics = [];
-
 window['history_chart_options'] = {
     showWhenNoData: true,
     plugins: new Map()
@@ -11,18 +9,14 @@ window['history_chart_options'].plugins.set('Piechart', {
 
 
 async function selectHistory(elem) {
-
     const s_id = elem.dataset.s_id;
     const entry = await findEntryById("../data/example_statistics.json", s_id);
-    const result = entry ? entry.actions : null;
-
-    if (result) {
-        currentHistoryStatistics = result;
-        console.log(currentHistoryStatistics);
-        //window['history_chart'].swac_comp.removeAllData();
-        //window['history_chart'].swac_comp.reload();
-    }
+    let req = document.getElementById('history_chart');
+    req.swac_comp.removeData('history');
+    req.swac_comp.addData('history', entry.actions);
+    req.swac_comp.reload();
 }
+
 
 async function findEntryById(jsonPath, searchId) {
 
@@ -38,5 +32,6 @@ async function findEntryById(jsonPath, searchId) {
         return null;
     }
 }
+
 
 
