@@ -44,25 +44,21 @@
     overflow-y: scroll;
 }
 
-/* Overlay-Hintergrund */
 #popup-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     display: none;
-    /* unsichtbar, bis .show gesetzt wird */
     justify-content: center;
     align-items: center;
     z-index: 99999;
 }
 
-/* Aktiviert das Popup */
 #popup-overlay.show {
     display: flex;
     animation: fadeIn 0.25s ease;
 }
 
-/* Fenster */
 #popup-window {
     width: 40%;
     height: 50%;

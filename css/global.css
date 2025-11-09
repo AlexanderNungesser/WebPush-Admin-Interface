@@ -55,6 +55,7 @@ body footer a {
 .layout {
     height: 95%;
     display: flex;
+    overflow: hidden;
 }
 
 a {

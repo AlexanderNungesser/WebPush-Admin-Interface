@@ -1,6 +1,6 @@
 [
     {
-        "id": "t1",
+        "t_id": "t1",
         "type": "time",
         "config": {
             "interval": "daily",
@@ -10,7 +10,7 @@
         "active": true
     },
     {
-        "id": "t2",
+        "t_id": "t2",
         "type": "event",
         "config": {
             "event_name": "user_signup",
@@ -20,7 +20,7 @@
         "active": true
     },
     {
-        "id": "t3",
+        "t_id": "t3",
         "type": "once",
         "config": {
             "metric": "cpu_usage",
@@ -31,7 +31,7 @@
         "active": true
     },
     {
-        "id": "t4",
+        "t_id": "t4",
         "type": "event",
         "config": {
             "url": "https://api.example.com/hook",
@@ -41,7 +41,7 @@
         "active": false
     },
     {
-        "id": "t5",
+        "t_id": "t5",
         "type": "once",
         "config": {
             "days": [
@@ -55,7 +55,7 @@
         "active": true
     },
     {
-        "id": "t6",
+        "t_id": "t6",
         "type": "time",
         "config": {
             "region": "EU",
@@ -65,7 +65,7 @@
         "active": false
     },
     {
-        "id": "t7",
+        "t_id": "t7",
         "type": "event",
         "config": {
             "action": "button_click",
@@ -75,7 +75,7 @@
         "active": true
     },
     {
-        "id": "t8",
+        "t_id": "t8",
         "type": "event",
         "config": {
             "endpoint": "/status",
@@ -85,7 +85,7 @@
         "active": true
     },
     {
-        "id": "t9",
+        "t_id": "t9",
         "type": "once",
         "config": {
             "table": "orders",
@@ -96,7 +96,7 @@
         "active": true
     },
     {
-        "id": "t10",
+        "t_id": "t10",
         "type": "event",
         "config": {
             "path": "/uploads/reports",
@@ -106,7 +106,7 @@
         "active": false
     },
     {
-        "id": "t11",
+        "t_id": "t11",
         "type": "time",
         "config": {
             "channel": "alerts",
@@ -116,7 +116,7 @@
         "active": true
     },
     {
-        "id": "t12",
+        "t_id": "t12",
         "type": "event",
         "config": {
             "sender": "alerts@example.com",
@@ -126,7 +126,7 @@
         "active": true
     },
     {
-        "id": "t13",
+        "t_id": "t13",
         "type": "once",
         "config": {
             "event": "server_restart",
@@ -136,7 +136,7 @@
         "active": true
     },
     {
-        "id": "t14",
+        "t_id": "t14",
         "type": "time",
         "config": {
             "metric": "memory_usage",
@@ -147,7 +147,7 @@
         "active": false
     },
     {
-        "id": "t15",
+        "t_id": "t15",
         "type": "event",
         "config": {
             "script_path": "/scripts/cleanup.sh",

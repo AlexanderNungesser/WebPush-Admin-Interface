@@ -59,9 +59,9 @@ function initTriggerForm() {
     }
 }
 
-function trigger_selected(triggerObj) {
+function selectTrigger(elem) {
     const triggerField = document.getElementById("trigger");
-    triggerField.value = triggerObj.querySelector('swac-bp[attrname="id"]').textContent;
+    triggerField.value = elem.dataset.t_id;
     closePopup();
 }
 

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>WebPush History</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/global.css">
+    <link rel="stylesheet" type="text/css" href="../css/history.css">
     <link rel="icon" type="image/png" href="../files/icons/logo.png">
     <noscript>
         <link rel="stylesheet" type="text/css" href="css/noscript.css">
@@ -22,13 +22,16 @@
         <main class="main_content">
             <div id="notification_history" swa="Present FROM example_history_notifications.json TEMPLATE present_webPush_history"></div>
         </main>
+        <aside class="right_panel">
+            <h3>Details (Ist noch verbuggt, frage ihn Dienstag wie das geht)</h3>
+            <div id="history_chart" swa="Charts FROM currentHistoryStatistics"></div>
+        </aside>
     </div>
     <footer>
         <a href="sites/about/privacy.html">Privacy policy</a>
         <a href="sites/about/imprint.html">Imprint</a>
     </footer>
-    <script src="../js/navigation.js"></script>
     <script src="../js/history.js"></script>
+    <script src="../js/navigation.js"></script>
 </body>
-
 </html>
