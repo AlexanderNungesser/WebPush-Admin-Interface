@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     initNotificationForm();
 });
 
+document.addEventListener('swac_components_complete', () =>{
+    const entries = document.querySelectorAll('.notification-card');
+    entries.forEach(entry => entry.onclick = () => selectTrigger(entry))
+});
+
 function initPopup() {
     const overlay = document.getElementById("popup-overlay");
     const openBtn = document.querySelector("#open-trigger-btn");

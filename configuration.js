@@ -13,7 +13,7 @@ var SWAC_config = {
     // Time nodifications should be displayed in miliseconds
     notifyDuration: 5000,
     /* Debugging mode for output of SWAC NOTICE and SWAC WARNING messages */
-    debugmode: true,
+    debugmode: false,
     debug: '',
     // Backend connection settings
     datasources: [

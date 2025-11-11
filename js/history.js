@@ -7,6 +7,10 @@ window['history_chart_options'].plugins.set('Piechart', {
     active: true
 });
 
+document.addEventListener('swac_components_complete', () =>{
+    const entries = document.querySelectorAll('.notification-card');
+    entries.forEach(entry => entry.onclick = () => selectHistory(entry))
+});
 
 async function selectHistory(elem) {
     const s_id = elem.dataset.s_id;
