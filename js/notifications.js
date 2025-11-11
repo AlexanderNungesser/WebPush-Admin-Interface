@@ -1,11 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('swac_components_complete', () =>{
     initPopup();
     initActions();
     initTriggerForm();
     initNotificationForm();
-});
-
-document.addEventListener('swac_components_complete', () =>{
     const entries = document.querySelectorAll('.notification-card');
     entries.forEach(entry => entry.onclick = () => selectTrigger(entry))
 });
@@ -24,6 +21,7 @@ function initPopup() {
 
     closeBtn.addEventListener("click", closePopup);
 };
+
 function closePopup() {
     const overlay = document.getElementById("popup-overlay");
     if (!overlay) return;
@@ -52,6 +50,7 @@ async function initActions() {
         console.error("Error loading Actions: ", err);
     }
 }
+
 function initTriggerForm() {
     const triggerForm = document.getElementById("trigger_form");;
 

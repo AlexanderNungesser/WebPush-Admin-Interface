@@ -1,124 +1,125 @@
 .grid_container {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-auto-rows: 150px;
-    gap: 10px;
-    overflow-y: auto;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #f0f0f0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-rows: 150px;
+  gap: 10px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
 }
 
 .grid_item {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
 }
 
 .form_container {
-    width: 400px;
-    overflow-y: auto;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #fafafa;
-    padding-right: 1%;
-    flex: 0 0 25%;
+  width: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+  padding-right: 1%;
+  flex: 0 0 25%;
 }
 
 .content_wrapper {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    gap: 20px;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  gap: 20px;
+  align-items: flex-start;
 }
 
 #all_notifications {
-    flex: 1 1 75%;
-    min-width: 300px;
-    overflow-y: scroll;
+  flex: 1 1 75%;
+  min-width: 300px;
+  overflow-y: scroll;
 }
 
 #popup-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
 }
 
 #popup-overlay.show {
-    display: flex;
-    animation: fadeIn 0.25s ease;
+  display: flex;
+  animation: fadeIn 0.25s ease;
 }
 
 #popup-window {
-    width: 40%;
-    height: 50%;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
+  width: 60%;
+  height: 80%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f0f0f0;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0f0f0;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
 }
 
 .close-btn {
-    background: transparent;
-    border: none;
-    font-size: 1.6rem;
-    line-height: 1;
-    cursor: pointer;
-    color: #333;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
 }
 
 .close-btn:hover {
-    color: #000;
+  color: #000;
 }
 
 .popup-content {
-    display: flex;
-    flex: 1;
-    min-height: 0;
+  display: flex;
+  flex: 1;
+  min-height: 0;
 }
 
 .popup-left {
-    width: 75%;
-    background: #fafafa;
-    padding: 20px;
-    overflow-y: auto;
-    min-height: 0;
+  width: 70%;
+  background: #fafafa;
+  padding: 20px;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .popup-right {
-    width: 25%;
-    background: #e9e9e9;
-    padding: 20px;
-    overflow: hidden;
+  width: 30%;
+  height: 100%;
+  background: #e9e9e9;
+  padding: 20px;
+  overflow: hidden;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
+  from {
+    opacity: 0;
+  }
 
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
