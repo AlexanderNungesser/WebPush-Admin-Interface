@@ -1,4 +1,4 @@
-document.addEventListener('swac_components_complete', () =>{
+document.addEventListener('swac_components_complete', () => {
     initPopup();
     initActions();
     initTriggerForm();
@@ -52,15 +52,62 @@ async function initActions() {
 }
 
 function initTriggerForm() {
-    const triggerForm = document.getElementById("trigger_form");;
+    const conditionList = document.getElementById("conditions_list");
+    const addConditionBtn = document.getElementById("add_condition_btn");
+    let conditionCounter = 1;
+    function createCondition() {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <a class="uk-accordion-title" href="#">Condition ${conditionCounter++}</a>
+            <div class="uk-accordion-content uk-padding-small">
+                <div class="uk-margin">
+                    <input class="uk-input" name="datenfeld1" type="text" placeholder="Datenfeld 1" required>
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" name="datenfeld2" type="text" placeholder="Datenfeld 2" required>
+                </div>
+                <div class="uk-margin">
+                    <input class="uk-input" name="datenfeld3" type="text" placeholder="Datenfeld 3" required>
+                </div>
+                <button class="uk-button uk-button-danger uk-button-small remove_condition_btn" type="button">
+                    Remove
+                </button>
+            </div>
+        `;
+        conditionList.appendChild(li);
 
-    if (triggerForm) {
-        triggerForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            console.log("new trigger created")
-            triggerForm.reset();
+        li.querySelector(".remove_condition_btn").addEventListener("click", () => {
+            li.remove();
         });
     }
+
+    addConditionBtn.addEventListener("click", createCondition);
+    const triggerForm = document.getElementById("trigger_form")
+    triggerForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const jsonOutput = {
+            when: {
+                schedule: {
+                    type: document.getElementById("schedule_type").value || "",
+                    cron: document.getElementById("schedule_cron").value || "",
+                    timestamp: document.getElementById("schedule_timestamp").value || ""
+                },
+                conditions: []
+            }
+        };
+        const conditions = conditionList.querySelectorAll("li");
+        conditions.forEach(li => {
+            const inputs = li.querySelectorAll("input");
+            jsonOutput.when.conditions.push({
+                "datenfeld 1": inputs[0].value,
+                "datenfeld 2": inputs[1].value,
+                "datenfeld 3": inputs[2].value
+            });
+        });
+        console.log(jsonOutput);
+        triggerForm.reset;
+    });
 }
 
 function selectTrigger(elem) {
