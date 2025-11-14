@@ -61,13 +61,26 @@ function initTriggerForm() {
             <a class="uk-accordion-title" href="#">Condition ${conditionCounter++}</a>
             <div class="uk-accordion-content uk-padding-small">
                 <div class="uk-margin">
-                    <input class="uk-input" name="datenfeld1" type="text" placeholder="Datenfeld 1" required>
+                    <label class="uk-form-label" for="data_field">DATA FIELD</label>
+                    <select class="uk-select" id="data_field" required>                      
+                        <option value="streak">Streak</option>                  
+                        <option value="value">Value</option>       
+                    </select>
                 </div>
                 <div class="uk-margin">
-                    <input class="uk-input" name="datenfeld2" type="text" placeholder="Datenfeld 2" required>
+                    <label class="uk-form-label" for="operator">OPERATOR</label>
+                    <select class="uk-select" id="operator" required>                      
+                        <option value="="> = </option>                  
+                        <option value="!="> != </option>                     
+                        <option value=">"> > </option>                  
+                        <option value=">="> >= </option>                     
+                        <option value="<"> < </option>                  
+                        <option value="<="> <= </option>       
+                    </select>
                 </div>
-                <div class="uk-margin">
-                    <input class="uk-input" name="datenfeld3" type="text" placeholder="Datenfeld 3" required>
+                <div class="uk-margin">     
+                    <label class="uk-form-label" for="threshold">THRESHOLD</label>
+                    <input class="uk-input" id="threshold" type="number" required>
                 </div>
                 <button class="uk-button uk-button-danger uk-button-small remove_condition_btn" type="button">
                     Remove
@@ -100,9 +113,9 @@ function initTriggerForm() {
         conditions.forEach(li => {
             const inputs = li.querySelectorAll("input");
             jsonOutput.when.conditions.push({
-                "datenfeld 1": inputs[0].value,
-                "datenfeld 2": inputs[1].value,
-                "datenfeld 3": inputs[2].value
+                "data_field": inputs[0].value,
+                "operator": inputs[1].value,
+                "threshold": inputs[2].value
             });
         });
         console.log(jsonOutput);
