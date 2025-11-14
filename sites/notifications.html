@@ -22,7 +22,7 @@
         <aside id="side_navigation" swa="Navigation FROM ../data/routes.json TEMPLATE nav_webPush"></aside>
         <main class="main_content">
             <div class="content_wrapper">
-                <div id="all_notifications" swa="Present FROM example_push_notifications.json TEMPLATE present_webPush_notifications"></div>
+                <div id="all_notifications" swa="Present FROM notifications TEMPLATE present_webPush_notifications"></div>
                 <div class="form_container">
                     <div id="notification_form" swa="Form TEMPLATE form_webPush_notifications"></div>
                 </div>
@@ -37,11 +37,11 @@
         <div id="popup-window">
             <div class="popup-header">
                 <h2>Select Trigger</h2>
-                <button id="popup-close" class="close-btn" aria-label="Close">×</button>
+                <button id="popup-close" class="close-btn" aria-label="Close">X</button>
             </div>
             <div class="popup-content">
                 <div class="popup-left">
-                    <div id="all_triggers" swa="Present FROM example_triggers.json TEMPLATE present_webPush_triggers"></div>
+                    <div id="all_triggers" swa="Present FROM triggers TEMPLATE present_webPush_triggers"></div>
                 </div>
                 <div class="popup-right">
                     <div id="trigger_form" swa="Form TEMPLATE form_webPush_trigger"></div>
