@@ -26,12 +26,5 @@
         "rto": "analytics.html",
         "name": "Analytics",
         "parent": ""
-    },
-    {
-        "id": 40,
-        "rfrom": "*",
-        "rto": "settings.html",
-        "name": "Settings",
-        "parent": ""
     }
 ]
