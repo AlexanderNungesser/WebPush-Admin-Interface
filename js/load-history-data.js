@@ -1,6 +1,6 @@
 async function loadHistoryRecords() {
     window.historyData = [];
-    const baseUrl = "http://localhost:8080/SmartDataAirquality/smartdata/records";
+    const baseUrl = `${window.location.origin}/SmartDataAirquality/smartdata/records`;
 
     const mainResp = await fetch(`${baseUrl}/history?storage=gamification`);
     const mainData = await mainResp.json();
