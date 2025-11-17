@@ -7,17 +7,22 @@ window['history_chart_options'].plugins.set('Piechart', {
     active: true
 });
 
-document.addEventListener('swac_components_complete', () =>{
+document.addEventListener('swac_components_complete', () => {
     const entries = document.querySelectorAll('.notification-card');
     entries.forEach(entry => entry.onclick = () => selectHistory(entry))
 });
 
 async function selectHistory(elem) {
-    const s_id = elem.dataset.s_id;
-    const entry = await findEntryById("../data/example_statistics.json", s_id);
+
+    const h_id = elem.dataset.h_id;
+    const url = `http://localhost:8080/SmartDataAirquality/smartdata/records/view_statistics_by_history?storage=gamification&filter=history_id,eq,${h_id}`
+    const response = await fetch(url);
+    const json = await response.json();
+    const stats = json.records[0].statistics
+    console.log(stats)
     let req = document.getElementById('history_chart');
-    req.swac_comp.removeData('history');
-    req.swac_comp.addData('history', entry.actions);
+    req.swac_comp.removeAllData();
+    req.swac_comp.addData('history', stats);
     req.swac_comp.reload();
 }
 

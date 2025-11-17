@@ -34,15 +34,15 @@ async function initActions() {
     if (!select) return;
 
     try {
-        const response = await fetch("../data/example_actions.json");
-        const triggers = await response.json();
+        const response = await fetch("http://localhost:8080/SmartDataAirquality/smartdata/records/actions?storage=gamification");
+        const actions = await response.json();
 
         select.innerHTML = "";
 
-        triggers.forEach(trigger => {
+        actions.records.forEach(action => {
             const opt = document.createElement("option");
-            opt.value = trigger.id;
-            opt.textContent = trigger.title;
+            opt.value = action.id;
+            opt.textContent = action.action_type;
             select.appendChild(opt);
         });
 
