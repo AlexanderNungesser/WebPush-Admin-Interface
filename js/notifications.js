@@ -1,8 +1,11 @@
+window['notification_form_options'] = {
+    target:'notifications'
+}
+
 document.addEventListener('swac_components_complete', () => {
     initPopup();
     initActions();
     initTriggerForm();
-    initNotificationForm();
     const entries = document.querySelectorAll('.notification-card');
     entries.forEach(entry => entry.onclick = () => selectTrigger(entry))
 });
@@ -37,12 +40,9 @@ async function initActions() {
         const response = await fetch("http://localhost:8080/SmartDataAirquality/smartdata/records/actions?storage=gamification");
         const actions = await response.json();
 
-        select.innerHTML = "";
-
         actions.records.forEach(action => {
-            const opt = document.createElement("option");
-            opt.value = action.id;
-            opt.textContent = action.action_type;
+            const opt = document.createElement("label");
+            opt.innerHTML =`<label><input class="uk-checkbox" name="action_${action.id}" id="action_${action.id}" type="checkbox"> ${action.action_type}</label>`
             select.appendChild(opt);
         });
 
@@ -93,50 +93,12 @@ function initTriggerForm() {
             li.remove();
         });
     }
-
     addConditionBtn.addEventListener("click", createCondition);
-    const triggerForm = document.getElementById("trigger_form")
-    triggerForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const jsonOutput = {
-            when: {
-                schedule: {
-                    type: document.getElementById("schedule_type").value || "",
-                    cron: document.getElementById("schedule_cron").value || "",
-                    timestamp: document.getElementById("schedule_timestamp").value || ""
-                },
-                conditions: []
-            }
-        };
-        const conditions = conditionList.querySelectorAll("li");
-        conditions.forEach(li => {
-            const inputs = li.querySelectorAll("input");
-            jsonOutput.when.conditions.push({
-                "data_field": inputs[0].value,
-                "operator": inputs[1].value,
-                "threshold": inputs[2].value
-            });
-        });
-        console.log(jsonOutput);
-        triggerForm.reset;
-    });
 }
 
 function selectTrigger(elem) {
-    const triggerField = document.getElementById("trigger");
+    const triggerField = document.getElementById("trigger_id");
+    console.log('selected')
     triggerField.value = elem.dataset.t_id;
     closePopup();
-}
-
-
-function initNotificationForm() {
-    const notificationForm = document.getElementById("notification_form");
-    if (notificationForm) {
-        notificationForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            console.log("new notification created")
-            notificationForm.reset();
-        });
-    }
 }

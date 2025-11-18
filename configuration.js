@@ -19,19 +19,8 @@ var SWAC_config = {
     datasources: [
         {
             url: "/WebPush-Admin-Interface/data/[fromName]"
-        },
+        }   ,  
         {
-            url: "/SmartData/smartdata/[iface]/[fromName]?storage=smartmonitoring",
-            interfaces: {
-                get: ['GET', 'records'],
-                list: ['GET', 'records'],
-                defs: ['GET', 'collection'],
-                create: ['POST', 'records'],
-                update: ['PUT', 'records'],
-                delete: ['DELETE', 'records']
-            }
-        },       
-         {
             url: "/SmartDataAirquality/smartdata/[iface]/[fromName]?storage=gamification",
             interfaces: {
                 get: ['GET', 'records'],
@@ -41,18 +30,7 @@ var SWAC_config = {
                 update: ['PUT', 'records'],
                 delete: ['DELETE', 'records']
             }
-        },
-        //    {
-        //        url: "/SmartMonitoringBackend/observedobject/[fromName]/[iface]",
-        //        interfaces: {
-        //            get: ['GET','get'],
-        //            list: ['GET','list'],
-        //            defs: ["GET",'definition'],
-        //            create: ['POST','create'],
-        //            update: ['UPDATE','update'],
-        //            delete: ['DELETE','delete']
-        //        }
-        //    }
+    }
     ],
     // Options for progressive webapp
     progressive: {
