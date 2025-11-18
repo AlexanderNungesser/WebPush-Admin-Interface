@@ -39,10 +39,9 @@ async function initActions() {
     try {
         const response = await fetch("http://localhost:8080/SmartDataAirquality/smartdata/records/actions?storage=gamification");
         const actions = await response.json();
-
         actions.records.forEach(action => {
             const opt = document.createElement("label");
-            opt.innerHTML =`<label><input class="uk-checkbox" name="action_${action.id}" id="action_${action.id}" type="checkbox"> ${action.action_type}</label>`
+            opt.innerHTML =`<input class="uk-checkbox" name="action_${action.id}" id="action_${action.id}" type="checkbox"> ${action.action_type}`
             select.appendChild(opt);
         });
 
@@ -58,18 +57,18 @@ function initTriggerForm() {
     function createCondition() {
         const li = document.createElement("li");
         li.innerHTML = `
-            <a class="uk-accordion-title" href="#">Condition ${conditionCounter++}</a>
+            <a class="uk-accordion-title" href="#">Condition ${conditionCounter}</a>
             <div class="uk-accordion-content uk-padding-small">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="data_field">DATA FIELD</label>
-                    <select class="uk-select" id="data_field" required>                      
+                    <select class="uk-select" name ="data_field__${conditionCounter}"id="data_field_${conditionCounter}" required>                      
                         <option value="streak">Streak</option>                  
                         <option value="value">Value</option>       
                     </select>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="operator">OPERATOR</label>
-                    <select class="uk-select" id="operator" required>                      
+                    <select class="uk-select" name="operator_${conditionCounter}"id="operator_${conditionCounter}" required>                      
                         <option value="="> = </option>                  
                         <option value="!="> != </option>                     
                         <option value=">"> > </option>                  
@@ -80,7 +79,7 @@ function initTriggerForm() {
                 </div>
                 <div class="uk-margin">     
                     <label class="uk-form-label" for="threshold">THRESHOLD</label>
-                    <input class="uk-input" id="threshold" type="number" required>
+                    <input class="uk-input" name="threshold_${conditionCounter}" id="threshold_${conditionCounter}" type="number" required>
                 </div>
                 <button class="uk-button uk-button-danger uk-button-small remove_condition_btn" type="button">
                     Remove
@@ -92,6 +91,7 @@ function initTriggerForm() {
         li.querySelector(".remove_condition_btn").addEventListener("click", () => {
             li.remove();
         });
+        conditionCounter++
     }
     addConditionBtn.addEventListener("click", createCondition);
 }
