@@ -1,5 +1,6 @@
 window['notification_form_options'] = {
-    target:'notifications'
+    customAfterSave: function () { reloadNotifications() },
+    target: 'notifications'
 }
 
 document.addEventListener('swac_components_complete', () => {
@@ -41,7 +42,7 @@ async function initActions() {
         const actions = await response.json();
         actions.records.forEach(action => {
             const opt = document.createElement("label");
-            opt.innerHTML =`<input class="uk-checkbox" name="action_${action.id}" id="action_${action.id}" type="checkbox"> ${action.action_type}`
+            opt.innerHTML = `<input class="uk-checkbox" name="action_${action.id}" id="action_${action.id}" type="checkbox"> ${action.action_type}`
             select.appendChild(opt);
         });
 
@@ -95,10 +96,13 @@ function initTriggerForm() {
     }
     addConditionBtn.addEventListener("click", createCondition);
 }
-
+function reloadNotifications() {
+    console.log("test");
+    const notifications = document.getElementById("all_notifications");
+    notifications.swac_comp.reload();
+}
 function selectTrigger(elem) {
     const triggerField = document.getElementById("trigger_id");
-    console.log('selected')
     triggerField.value = elem.dataset.t_id;
     closePopup();
 }
