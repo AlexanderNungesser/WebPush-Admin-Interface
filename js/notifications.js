@@ -1,6 +1,11 @@
 window['notification_form_options'] = {
     customAfterSave: function () { reloadNotifications() },
-    target: 'notifications'
+    target: 'createNotification'
+}
+
+window['trigger_form_options'] = {
+    customAfterSave: function () { reloadTriggers() },
+    target: 'createTrigger'
 }
 
 document.addEventListener('swac_components_complete', () => {
@@ -62,7 +67,7 @@ function initTriggerForm() {
             <div class="uk-accordion-content uk-padding-small">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="data_field">DATA FIELD</label>
-                    <select class="uk-select" name ="data_field__${conditionCounter}"id="data_field_${conditionCounter}" required>                      
+                    <select class="uk-select" name ="data_field_${conditionCounter}"id="data_field_${conditionCounter}" required>                      
                         <option value="streak">Streak</option>                  
                         <option value="value">Value</option>       
                     </select>
@@ -96,11 +101,17 @@ function initTriggerForm() {
     }
     addConditionBtn.addEventListener("click", createCondition);
 }
+
 function reloadNotifications() {
-    console.log("test");
     const notifications = document.getElementById("all_notifications");
     notifications.swac_comp.reload();
 }
+
+function reloadTriggers() {
+    const notifications = document.getElementById("all_triggers");
+    notifications.swac_comp.reload();
+}
+
 function selectTrigger(elem) {
     const triggerField = document.getElementById("trigger_id");
     triggerField.value = elem.dataset.t_id;

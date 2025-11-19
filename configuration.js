@@ -29,6 +29,13 @@ var SWAC_config = {
                 create: ['POST', 'records'],
                 update: ['PUT', 'records'],
                 delete: ['DELETE', 'records']
+            },
+            exclude: ['createNotification', 'createTrigger']
+        },
+        {
+            url: "/WebPush/smarttemplate/[iface]/[fromName]",
+            interfaces: {
+                create: ['POST', 'admin'],
             }
         }
     ],
