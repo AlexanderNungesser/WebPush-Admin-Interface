@@ -1,27 +1,20 @@
 [
     {
-        "id": 1,
+        "id": 0,
         "rfrom": "*",
         "rto": "index.html",
-        "name": "Home",
-        "parent": ""
-    },
-    {
-        "id": 10,
-        "rfrom": "*",
-        "rto": "notifications.html",
         "name": "Notifications",
         "parent": ""
     },
     {
-        "id": 20,
+        "id": 10,
         "rfrom": "*",
         "rto": "history.html",
         "name": "History",
         "parent": ""
     },
     {
-        "id": 30,
+        "id": 20,
         "rfrom": "*",
         "rto": "analytics.html",
         "name": "Analytics",
