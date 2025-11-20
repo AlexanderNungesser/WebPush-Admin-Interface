@@ -30,8 +30,11 @@
                 <div id="notification_history" swa="Present FROM view_sent_notifications TEMPLATE present_webPush_history"></div>
             </div>
         </main>
-        <aside class="right_panel">
-            <h3>Details</h3>
+        <aside class="right-panel">
+            <div class="reload-header">
+                <h2>Notification analytics</h2>
+                <button id="history-statistics-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
+            </div>
             <div id="history_chart" swa="Charts"></div>
         </aside>
     </div>

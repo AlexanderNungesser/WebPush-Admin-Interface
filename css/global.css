@@ -85,3 +85,18 @@ a {
 .header-btn:hover {
     color: #000;
 }
+
+.right-panel {
+    width: 20%;
+    height: 100%;
+    background-color: #ffffff;
+    border-left: 1px solid #ddd;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

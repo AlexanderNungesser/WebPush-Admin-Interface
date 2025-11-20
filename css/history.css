@@ -1,11 +1,4 @@
-.right_panel {
-    width: 25%;
-    height: 100%;
-    background-color: #ffffff;
-    border-left: 1px solid #ddd;
-    padding: 15px;
-    position: sticky;
-    top: 0;
-    overflow: hidden;
-    position: relative;
+#history_chart {
+    width: 100%;
+    height: auto
 }

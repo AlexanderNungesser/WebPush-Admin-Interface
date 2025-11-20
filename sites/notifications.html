@@ -22,19 +22,17 @@
     <div class="layout">
         <aside id="side_navigation" swa="Navigation FROM ../data/routes.json TEMPLATE nav_webPush"></aside>
         <main class="main_content">
-            <div class="content_wrapper">  
-                <div>
-                    <div class="reload-header">
-                        <h2>All Notifications</h2>
-                        <button id="notification-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
-                    </div>
-                    <div id="all_notifications" swa="Present FROM view_notifications_with_type TEMPLATE present_webPush_notifications"></div>
-                </div>         
-                <div class="form_container">
-                    <div id="notification_form_swac" swa="Form TEMPLATE form_webPush_notifications"></div>
+            <div>
+                <div class="reload-header">
+                    <h2>All Notifications</h2>
+                    <button id="notification-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
                 </div>
-            </div>
-        </main>     
+                <div id="all_notifications" swa="Present FROM view_notifications_with_type TEMPLATE present_webPush_notifications"></div>
+            </div>    
+        </main>  
+        <aside class="right-panel">
+            <div id="notification_form_swac" swa="Form TEMPLATE form_webPush_notifications"></div>
+        </aside>       
     </div>
     <footer>
         <a href="about/privacy.html">Privacy policy</a>
