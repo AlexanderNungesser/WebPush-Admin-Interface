@@ -1,3 +1,5 @@
+var curHistory;
+
 window['history_chart_options'] = {
     showWhenNoData: true,
     plugins: new Map([['Piechart', {
@@ -10,8 +12,13 @@ window['history_chart_options'] = {
 
 document.addEventListener('swac_components_complete', () => {
     initHistorySelection()
+
     const reloadBtn = document.getElementById("history-reload");
     reloadBtn.addEventListener("click", reloadHistory);
+
+    const reloadStatisticsBtn = document.getElementById("history-statistics-reload");
+    reloadStatisticsBtn.addEventListener("click", () => { selectHistory(curHistory) });
+
     document.addEventListener(`swac_all_triggers_reloaded`, initHistorySelection)
 });
 
@@ -26,6 +33,8 @@ function initHistorySelection() {
 }
 
 async function selectHistory(elem) {
+    curHistory = elem;
+
     let req = document.getElementById('history_chart').swac_comp;
     req.removeAllData();
 
@@ -33,6 +42,7 @@ async function selectHistory(elem) {
     const url = `http://localhost:8080/SmartDataAirquality/smartdata/records/view_statistics_by_history?storage=gamification&filter=history_id,eq,${h_id}`
     const response = await fetch(url);
     const json = await response.json();
+
     const stats = json.records[0]?.statistics
     if (!stats) return;
     stats.forEach((stat) => {
