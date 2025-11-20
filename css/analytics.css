@@ -17,13 +17,30 @@
 }
 
 .chart {
-    height: 75%;
     display: flex;
-    justify-content: center;
+    gap: 3%;
     align-items: center;
+    justify-content: center;
+    margin-top: 20px;
     overflow: hidden;
+    height: 75%;
 }
 
 #statistics_chart {
     width: 45%;
+}
+
+.chart-description {
+    width: 25%;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    display: block;
+}
+
+.chart-description .highlight-number {
+    color: #0073e6;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: inline;
 }

@@ -40,8 +40,8 @@ async function updateChart(view) {
     const url = `${window.location.origin}/SmartDataAirquality/smartdata/records/${view}?storage=gamification`
     const response = await fetch(url);
     const json = await response.json();
-
-    const stats = json.records[0]?.result.actions
+    if (!json.records[0]) return;
+    const stats = json.records[0].result.actions
     if (!stats) return;
     stats.forEach((stat) => {
         let newset = {
@@ -50,6 +50,8 @@ async function updateChart(view) {
         };
         req.addSet(`generalStatistics`, newset);
     });
+
+    updateChartDescriptionValues(json.records[0].result.since, json.records[0].result.sent_notifications)
 }
 
 async function loadFurtherStatistics() {
@@ -70,4 +72,22 @@ async function loadFurtherStatistics() {
     response = await fetch(url);
     json = await response.json();
     document.getElementById("stat-members").textContent = json.records.length;
+}
+
+function updateChartDescriptionValues(sinceTimestamp, amount) {
+    const date = new Date(sinceTimestamp);
+    const options = {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    };
+    const formattedDate = date.toLocaleString("en-GB", options);
+
+    const timestampEl = document.getElementById("desc-timestamp");
+    const amountEl = document.getElementById("desc-amount");
+
+    timestampEl.textContent = formattedDate;
+    amountEl.textContent = amount.toLocaleString();
 }
