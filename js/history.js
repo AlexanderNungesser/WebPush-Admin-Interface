@@ -1,11 +1,12 @@
 window['history_chart_options'] = {
     showWhenNoData: true,
-    plugins: new Map()
+    plugins: new Map([['Piechart', {
+        id: 'Piechart',
+        active: true
+    }]]),
+    xAxisAttrName: 'amount',
+    yAxisAttrNames: [],
 };
-window['history_chart_options'].plugins.set('Piechart', {
-    id: 'Piechart',
-    active: true
-});
 
 document.addEventListener('swac_components_complete', () => {
     const entries = document.querySelectorAll('.notification-card');
@@ -13,19 +14,23 @@ document.addEventListener('swac_components_complete', () => {
 });
 
 async function selectHistory(elem) {
+    let req = document.getElementById('history_chart').swac_comp;
+    req.removeAllData();
 
     const h_id = elem.dataset.h_id;
     const url = `http://localhost:8080/SmartDataAirquality/smartdata/records/view_statistics_by_history?storage=gamification&filter=history_id,eq,${h_id}`
     const response = await fetch(url);
     const json = await response.json();
-    const stats = json.records[0].statistics
-    console.log(stats)
-    let req = document.getElementById('history_chart');
-    req.swac_comp.removeAllData();
-    req.swac_comp.addData('history', stats);
-    req.swac_comp.reload();
+    const stats = json.records[0]?.statistics
+    if (!stats) return;
+    stats.forEach((stat) => {
+        let newset = {
+            name: stat.action,
+            amount: stat.amount
+        };
+        req.addSet(`HistoryID_${h_id}`, newset);
+    });
 }
-
 
 async function findEntryById(jsonPath, searchId) {
 
