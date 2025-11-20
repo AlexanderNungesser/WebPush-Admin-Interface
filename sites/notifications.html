@@ -24,9 +24,9 @@
         <main class="main_content">
             <div class="content_wrapper">  
                 <div>
-                    <div class="popup-header-left" style="margin-bottom: 2%;">
+                    <div class="reload-header">
                         <h2>All Notifications</h2>
-                        <button id="notification-reload" class="close-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
+                        <button id="notification-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
                     </div>
                     <div id="all_notifications" swa="Present FROM view_notifications_with_type TEMPLATE present_webPush_notifications"></div>
                 </div>         
@@ -43,11 +43,11 @@
    <div id="popup-overlay" aria-hidden="true">
         <div id="popup-window">
             <div class="popup-header">
-                <div class="popup-header-left">
+                <div class="reload-header">
                     <h2>Select Trigger</h2>
-                    <button id="popup-reload" class="close-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
+                    <button id="popup-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
                 </div>
-                <button id="popup-close" class="close-btn" aria-label="Close"><span uk-icon="close"></span></button>
+                <button id="popup-close" class="header-btn" aria-label="Close"><span uk-icon="close"></span></button>
             </div>
             <div class="popup-content">
                 <div class="popup-left">

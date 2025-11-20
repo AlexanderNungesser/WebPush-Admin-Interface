@@ -80,29 +80,6 @@
   height: 8%;
 }
 
-.popup-header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.popup-header-left h2 {
-  margin: 0;
-}
-
-.close-btn {
-  background: transparent;
-  border: none;
-  font-size: 1.6rem;
-  line-height: 1;
-  cursor: pointer;
-  color: #333;
-}
-
-.close-btn:hover {
-  color: #000;
-}
-
 .popup-content {
   display: flex;
   flex: 1;

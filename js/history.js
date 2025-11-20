@@ -9,9 +9,21 @@ window['history_chart_options'] = {
 };
 
 document.addEventListener('swac_components_complete', () => {
+    initHistorySelection()
+    const reloadBtn = document.getElementById("history-reload");
+    reloadBtn.addEventListener("click", reloadHistory);
+    document.addEventListener(`swac_all_triggers_reloaded`, initHistorySelection)
+});
+
+function reloadHistory() {
+    const notifications = document.getElementById("all_notifications");
+    notifications.swac_comp.reload();
+}
+
+function initHistorySelection() {
     const entries = document.querySelectorAll('.notification-card');
     entries.forEach(entry => entry.onclick = () => selectHistory(entry))
-});
+}
 
 async function selectHistory(elem) {
     let req = document.getElementById('history_chart').swac_comp;
@@ -30,21 +42,6 @@ async function selectHistory(elem) {
         };
         req.addSet(`HistoryID_${h_id}`, newset);
     });
-}
-
-async function findEntryById(jsonPath, searchId) {
-
-    console.log(searchId);
-    try {
-        const response = await fetch(jsonPath);
-        const data = await response.json();
-
-        return data.find(item => item.s_id === searchId) || null;
-
-    } catch (error) {
-        console.error("Error loading statistic data: ", error);
-        return null;
-    }
 }
 
 
