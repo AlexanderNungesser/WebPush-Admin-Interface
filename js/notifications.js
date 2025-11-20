@@ -18,6 +18,9 @@ document.addEventListener('swac_components_complete', () => {
     initPopup();
     initActions();
     initTriggerForm();
+
+    const reloadBtn = document.getElementById("notification-reload");
+    reloadBtn.addEventListener("click", reloadNotifications);
 });
 
 function reloadNotifications() {
