@@ -19,11 +19,11 @@ document.addEventListener('swac_components_complete', () => {
     const reloadStatisticsBtn = document.getElementById("history-statistics-reload");
     reloadStatisticsBtn.addEventListener("click", () => { selectHistory(curHistory) });
 
-    document.addEventListener(`swac_all_triggers_reloaded`, initHistorySelection)
+    document.addEventListener(`swac_notification_history_reloaded`, initHistorySelection)
 });
 
 function reloadHistory() {
-    const notifications = document.getElementById("all_notifications");
+    const notifications = document.getElementById("notification_history");
     notifications.swac_comp.reload();
 }
 
