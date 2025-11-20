@@ -18,8 +18,6 @@ document.addEventListener('swac_components_complete', () => {
     initPopup();
     initActions();
     initTriggerForm();
-    const entries = document.querySelectorAll('.notification-card');
-    entries.forEach(entry => entry.onclick = () => selectTrigger(entry))
 });
 
 function reloadNotifications() {
@@ -46,12 +44,13 @@ function initPopup() {
 
     closeBtn.addEventListener("click", closePopup);
 
-
     const cronInput = document.getElementById("schedule_cron");
     cronInput.addEventListener("input", checkInputs);
 
     const timeInput = document.getElementById("schedule_timestamp");
     timeInput.addEventListener("input", checkInputs);
+
+    document.addEventListener(`swac_all_triggers_reloaded`, initTriggerSelection)
 };
 
 function closePopup() {
@@ -79,9 +78,15 @@ async function initActions() {
     }
 }
 
+function initTriggerSelection() {
+    const entries = document.querySelectorAll('.notification-card');
+    entries.forEach(entry => entry.onclick = () => selectTrigger(entry))
+}
+
 function initTriggerForm() {
     const addConditionBtn = document.getElementById("add_condition_btn");
     addConditionBtn.addEventListener("click", createCondition);
+    initTriggerSelection();
 }
 
 function resetTriggerForm() {
