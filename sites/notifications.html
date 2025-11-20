@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="/SWAC/swac/libs/uikit/css/uikit.min.css">
     <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
+    <script src="/SWAC/swac/libs/uikit/js/uikit-icons.min.js"></script>
     <script src="/SWAC/swac/swac.js" type="module"></script>
 </head>
 
@@ -36,8 +37,11 @@
    <div id="popup-overlay" aria-hidden="true">
         <div id="popup-window">
             <div class="popup-header">
-                <h2>Select Trigger</h2>
-                <button id="popup-close" class="close-btn" aria-label="Close">x</button>
+                <div class="popup-header-left">
+                    <h2>Select Trigger</h2>
+                    <button id="popup-reload" class="close-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
+                </div>
+                <button id="popup-close" class="close-btn" aria-label="Close"><span uk-icon="close"></span></button>
             </div>
             <div class="popup-content">
                 <div class="popup-left">

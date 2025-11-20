@@ -32,8 +32,9 @@ function resetNotificationForm() {
 
 function initPopup() {
     const overlay = document.getElementById("popup-overlay");
-    const openBtn = document.querySelector("#open-trigger-btn");
+    const openBtn = document.getElementById("open-trigger-btn");
     const closeBtn = document.getElementById("popup-close");
+    const reloadBtn = document.getElementById("popup-reload");
     if (!overlay || !openBtn || !closeBtn) return;
 
     openBtn.addEventListener("click", (e) => {
@@ -43,6 +44,8 @@ function initPopup() {
     });
 
     closeBtn.addEventListener("click", closePopup);
+
+    reloadBtn.addEventListener("click", reloadTriggers);
 
     const cronInput = document.getElementById("schedule_cron");
     cronInput.addEventListener("input", checkInputs);
