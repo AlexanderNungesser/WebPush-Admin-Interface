@@ -39,7 +39,7 @@ async function selectHistory(elem) {
     req.removeAllData();
 
     const h_id = elem.dataset.h_id;
-    const url = `http://localhost:8080/SmartDataAirquality/smartdata/records/view_statistics_by_history?storage=gamification&filter=history_id,eq,${h_id}`
+    const url = `${window.location.origin}/SmartDataAirquality/smartdata/records/view_statistics_by_history?storage=gamification&filter=history_id,eq,${h_id}`
     const response = await fetch(url);
     const json = await response.json();
 

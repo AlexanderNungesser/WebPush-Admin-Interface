@@ -1,0 +1,29 @@
+.stat-item {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.stat-item h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.stat-number {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #0073e6;
+    margin-top: 5px;
+}
+
+.chart {
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#statistics_chart {
+    width: 45%;
+}
