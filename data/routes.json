@@ -2,7 +2,7 @@
     {
         "id": 0,
         "rfrom": "*",
-        "rto": "index.html",
+        "rto": "../index.html",
         "name": "Notifications",
         "parent": ""
     },

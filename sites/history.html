@@ -15,20 +15,17 @@
     <script src="/SWAC/swac/libs/uikit/js/uikit.min.js"></script>
     <script src="/SWAC/swac/libs/uikit/js/uikit-icons.min.js"></script>
     <script src="/SWAC/swac/swac.js" type="module"></script>
-    <script src="../js/load-history-data.js" ></script>
 </head>
 
 <body>
     <div class="layout">
         <aside id="side_navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush"></aside>
         <main class="main_content">
-            <div>
-                <div class="reload-header">
-                    <h2>Notification history</h2>
-                    <button id="history-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
-                </div>
-                <div id="notification_history" swa="Present FROM view_sent_notifications TEMPLATE present_webPush_history"></div>
+            <div class="reload-header">
+                <h2>Notification history</h2>
+                <button id="history-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
             </div>
+            <div id="notification_history" swa="Present FROM view_sent_notifications TEMPLATE present_webPush_history"></div>
         </main>
         <aside class="right-panel">
             <div class="reload-header">

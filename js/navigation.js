@@ -1,6 +1,12 @@
 document.addEventListener("swac_components_complete", () => {
+    const logo = document.getElementById("nav_logo");
+    logo.src = "/WebPush-Admin-Interface/content/logo.png"
+
     const navLinks = document.querySelectorAll("#side_navigation .nav_link");
-    const current = window.location.pathname.split("/").pop();
+    let current = window.location.pathname.split("/").pop();
+    if (!current) {
+        current = "index.html";
+    }
     navLinks.forEach(link => {
         const href = link.getAttribute("href");
 
