@@ -33,7 +33,7 @@ var SWAC_config = {
             exclude: ['createNotification', 'createTrigger']
         },
         {
-            url: "/WebPush/smarttemplate/[iface]/[fromName]",
+            url: "/WebPush/webpush/[iface]/[fromName]",
             interfaces: {
                 create: ['POST', 'admin'],
             }

@@ -1,10 +1,16 @@
-window['notification_form_options'] = {
-    customAfterSave: function () { reloadNotifications() },
+window['notification_form_swac_options'] = {
+    customAfterSave: () => {
+        resetNotificationForm();
+        reloadNotifications();
+    },
     target: 'createNotification'
 }
 
-window['trigger_form_options'] = {
-    customAfterSave: function () { reloadTriggers() },
+window['trigger_form_swac_options'] = {
+    customAfterSave: () => {
+        resetTriggerForm();
+        reloadTriggers();
+    },
     target: 'createTrigger'
 }
 
@@ -15,6 +21,16 @@ document.addEventListener('swac_components_complete', () => {
     const entries = document.querySelectorAll('.notification-card');
     entries.forEach(entry => entry.onclick = () => selectTrigger(entry))
 });
+
+function reloadNotifications() {
+    const notifications = document.getElementById("all_notifications");
+    notifications.swac_comp.reload();
+}
+
+function resetNotificationForm() {
+    const triggerForm = document.getElementById("notification_form");
+    triggerForm.reset();
+}
 
 function initPopup() {
     const overlay = document.getElementById("popup-overlay");
@@ -29,13 +45,20 @@ function initPopup() {
     });
 
     closeBtn.addEventListener("click", closePopup);
+
+
+    const cronInput = document.getElementById("schedule_cron");
+    cronInput.addEventListener("input", checkInputs);
+
+    const timeInput = document.getElementById("schedule_timestamp");
+    timeInput.addEventListener("input", checkInputs);
 };
 
 function closePopup() {
     const overlay = document.getElementById("popup-overlay");
-    if (!overlay) return;
     overlay.classList.remove("show");
     document.body.style.overflow = "";
+    resetTriggerForm();
 }
 
 async function initActions() {
@@ -57,12 +80,58 @@ async function initActions() {
 }
 
 function initTriggerForm() {
-    const conditionList = document.getElementById("conditions_list");
     const addConditionBtn = document.getElementById("add_condition_btn");
-    let conditionCounter = 1;
-    function createCondition() {
-        const li = document.createElement("li");
-        li.innerHTML = `
+    addConditionBtn.addEventListener("click", createCondition);
+}
+
+function resetTriggerForm() {
+    const conditionList = document.getElementById("conditions_list");
+    while (conditionList.firstChild) {
+        conditionList.removeChild(conditionList.firstChild);
+    }
+    conditionCounter = 1;
+
+    const triggerForm = document.getElementById("trigger_form");
+    triggerForm.reset();
+}
+
+function reloadTriggers() {
+    const notifications = document.getElementById("all_triggers");
+    notifications.swac_comp.reload();
+}
+
+function selectTrigger(elem) {
+    console.log("select")
+    const triggerField = document.getElementById("trigger_id");
+    triggerField.value = elem.dataset.t_id;
+    closePopup();
+}
+
+function checkInputs() {
+    const cronInput = document.getElementById("schedule_cron");
+    const timeInput = document.getElementById("schedule_timestamp");
+    if (cronInput.value.trim() !== "") {
+        timeInput.disabled = true;
+        timeInput.classList.add("hide");
+    } else {
+        timeInput.disabled = false;
+        timeInput.classList.remove("hide");
+    }
+    if (timeInput.value.trim() !== "") {
+        cronInput.disabled = true;
+        cronInput.classList.add("hide");
+    } else {
+        cronInput.disabled = false;
+        cronInput.classList.remove("hide");
+    }
+}
+
+
+var conditionCounter = 1;
+function createCondition() {
+    const conditionList = document.getElementById("conditions_list");
+    const li = document.createElement("li");
+    li.innerHTML = `
             <a class="uk-accordion-title" href="#">Condition ${conditionCounter}</a>
             <div class="uk-accordion-content uk-padding-small">
                 <div class="uk-margin">
@@ -92,28 +161,10 @@ function initTriggerForm() {
                 </button>
             </div>
         `;
-        conditionList.appendChild(li);
+    conditionList.appendChild(li);
 
-        li.querySelector(".remove_condition_btn").addEventListener("click", () => {
-            li.remove();
-        });
-        conditionCounter++
-    }
-    addConditionBtn.addEventListener("click", createCondition);
-}
-
-function reloadNotifications() {
-    const notifications = document.getElementById("all_notifications");
-    notifications.swac_comp.reload();
-}
-
-function reloadTriggers() {
-    const notifications = document.getElementById("all_triggers");
-    notifications.swac_comp.reload();
-}
-
-function selectTrigger(elem) {
-    const triggerField = document.getElementById("trigger_id");
-    triggerField.value = elem.dataset.t_id;
-    closePopup();
+    li.querySelector(".remove_condition_btn").addEventListener("click", () => {
+        li.remove();
+    });
+    conditionCounter++;
 }
