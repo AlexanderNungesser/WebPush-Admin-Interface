@@ -98,6 +98,7 @@ function resetTriggerForm() {
 
     const triggerForm = document.getElementById("trigger_form");
     triggerForm.reset();
+    checkInputs();
 }
 
 function reloadTriggers() {
