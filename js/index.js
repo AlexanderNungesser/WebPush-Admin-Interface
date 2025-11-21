@@ -32,17 +32,23 @@ function reloadNotifications() {
 
 function initNotificationDeleteButtons() {
     const swacContainer = document.getElementById('all_notifications');
-    console.log(swacContainer)
     const cards = swacContainer.querySelectorAll('.uk-card');
-    console.log(cards)
     cards.forEach(card => {
         const deleteButton = card.querySelector('.notif-delete-btn');
-        deleteButton.addEventListener('click', () => { deleteNotification(card.dataset.n_id) });
+        deleteButton.addEventListener('click', () => { deleteFromDB('notifications', card.dataset.n_id) });
     });
 }
 
-function deleteNotification(notification_id) {
-    console.log(`Deleting notification ${notification_id} (not implemented yet)`);
+function deleteFromDB(table, id) {
+    fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/${table}/${id}?storage=gamification`, {
+        method: "DELETE"
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error(`Error deleting ${table} with id ${id}`);
+        }
+        reloadNotifications();
+        reloadTriggers();
+    }).catch(err => console.error(err));
 }
 
 function resetNotificationForm() {
@@ -135,14 +141,9 @@ function initTriggerDeleteButtons() {
     const cards = swacContainer.querySelectorAll('.uk-card');
     cards.forEach(card => {
         const deleteButton = card.querySelector('.notif-delete-btn');
-        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteTrigger(card.dataset.t_id); });
+        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteFromDB('triggers', card.dataset.t_id); });
     });
 }
-
-function deleteTrigger(trigger_id) {
-    console.log(`Deleting trigger ${trigger_id} (not implemented yet)`);
-}
-
 function selectTrigger(elem) {
     const triggerField = document.getElementById("trigger_id");
     triggerField.value = elem.dataset.t_id;

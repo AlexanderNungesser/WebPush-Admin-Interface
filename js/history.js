@@ -13,8 +13,9 @@ window['history_chart_options'] = {
 document.addEventListener('swac_components_complete', () => {
     initHistorySelection();
     initDeleteButtons();
-    const reloadBtn = document.getElementById("history-reload");
-    reloadBtn.addEventListener("click", reloadHistory);
+
+    // const reloadBtn = document.getElementById("history-reload");
+    // reloadBtn.addEventListener("click", reloadHistory);
 
     const reloadStatisticsBtn = document.getElementById("history-statistics-reload");
     reloadStatisticsBtn.addEventListener("click", () => { selectHistory(curHistory) });
@@ -22,10 +23,11 @@ document.addEventListener('swac_components_complete', () => {
     document.addEventListener(`swac_notification_history_reloaded`, () => { initHistorySelection(); initDeleteButtons() })
 });
 
-function reloadHistory() {
-    const notifications = document.getElementById("notification_history");
-    notifications.swac_comp.reload();
-}
+// Removes delete buttons for some reason
+// function reloadHistory() {
+//     const history = document.getElementById("notification_history");
+//     history.swac_comp.reload();
+// }
 
 function initHistorySelection() {
     const entries = document.querySelectorAll('.notification-card');
@@ -34,7 +36,6 @@ function initHistorySelection() {
 
 function initDeleteButtons() {
     const historyCards = document.querySelectorAll('.present_main .notification-card');
-
     historyCards.forEach(card => {
         const type = card.dataset.type;
         const button = card.querySelector('.notif-delete-btn');
@@ -47,7 +48,14 @@ function initDeleteButtons() {
 }
 
 function deleteHistory(history_id) {
-    console.log(`Deleting ${history_id} (not implemented yet)`);
+    fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/history/${history_id}?storage=gamification`, {
+        method: "DELETE"
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error(`Error deleting history with ${history_id}`);
+        }
+        // reloadHistory();
+    }).catch(err => console.error(err));
 }
 
 async function selectHistory(elem) {
