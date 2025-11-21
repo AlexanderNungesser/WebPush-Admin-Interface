@@ -153,7 +153,7 @@ function createCondition() {
                 <div class="uk-margin">
                     <label class="uk-form-label" for="operator">OPERATOR</label>
                     <select class="uk-select" name="operator_${conditionCounter}"id="operator_${conditionCounter}" required>                      
-                        <option value="="> = </option>                  
+                        <option value="=="> = </option>                  
                         <option value="!="> != </option>                     
                         <option value=">"> > </option>                  
                         <option value=">="> >= </option>                     
