@@ -11,15 +11,15 @@ window['history_chart_options'] = {
 };
 
 document.addEventListener('swac_components_complete', () => {
-    initHistorySelection()
-
+    initHistorySelection();
+    initDeleteButtons();
     const reloadBtn = document.getElementById("history-reload");
     reloadBtn.addEventListener("click", reloadHistory);
 
     const reloadStatisticsBtn = document.getElementById("history-statistics-reload");
     reloadStatisticsBtn.addEventListener("click", () => { selectHistory(curHistory) });
 
-    document.addEventListener(`swac_notification_history_reloaded`, initHistorySelection)
+    document.addEventListener(`swac_notification_history_reloaded`, () => { initHistorySelection(); initDeleteButtons() })
 });
 
 function reloadHistory() {
@@ -30,6 +30,24 @@ function reloadHistory() {
 function initHistorySelection() {
     const entries = document.querySelectorAll('.notification-card');
     entries.forEach(entry => entry.onclick = () => selectHistory(entry))
+}
+
+function initDeleteButtons() {
+    const historyCards = document.querySelectorAll('.present_main .notification-card');
+
+    historyCards.forEach(card => {
+        const type = card.dataset.type;
+        const button = card.querySelector('.notif-delete-btn');
+        if (type !== 'deleted' && button) {
+            button.remove();
+            return;
+        }
+        button.addEventListener("click", (event) => { event.stopPropagation(); deleteHistory(card.dataset.h_id); })
+    });
+}
+
+function deleteHistory(history_id) {
+    console.log(`Deleting ${history_id} (not implemented yet)`);
 }
 
 async function selectHistory(elem) {

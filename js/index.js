@@ -18,7 +18,8 @@ document.addEventListener('swac_components_complete', () => {
     initPopup();
     initActions();
     initTriggerForm();
-
+    initNotificationDeleteButtons();
+    initTriggerDeleteButtons();
     const reloadBtn = document.getElementById("notification-reload");
     reloadBtn.addEventListener("click", reloadNotifications);
 });
@@ -26,6 +27,22 @@ document.addEventListener('swac_components_complete', () => {
 function reloadNotifications() {
     const notifications = document.getElementById("all_notifications");
     notifications.swac_comp.reload();
+    initNotificationDeleteButtons();
+}
+
+function initNotificationDeleteButtons() {
+    const swacContainer = document.getElementById('all_notifications');
+    console.log(swacContainer)
+    const cards = swacContainer.querySelectorAll('.uk-card');
+    console.log(cards)
+    cards.forEach(card => {
+        const deleteButton = card.querySelector('.notif-delete-btn');
+        deleteButton.addEventListener('click', () => { deleteNotification(card.dataset.n_id) });
+    });
+}
+
+function deleteNotification(notification_id) {
+    console.log(`Deleting notification ${notification_id} (not implemented yet)`);
 }
 
 function resetNotificationForm() {
@@ -110,14 +127,28 @@ function resetTriggerForm() {
 function reloadTriggers() {
     const notifications = document.getElementById("all_triggers");
     notifications.swac_comp.reload();
+    initTriggerDeleteButtons();
+}
+
+function initTriggerDeleteButtons() {
+    const swacContainer = document.getElementById('all_triggers');
+    const cards = swacContainer.querySelectorAll('.uk-card');
+    cards.forEach(card => {
+        const deleteButton = card.querySelector('.notif-delete-btn');
+        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteTrigger(card.dataset.t_id); });
+    });
+}
+
+function deleteTrigger(trigger_id) {
+    console.log(`Deleting trigger ${trigger_id} (not implemented yet)`);
 }
 
 function selectTrigger(elem) {
-    console.log("select")
     const triggerField = document.getElementById("trigger_id");
     triggerField.value = elem.dataset.t_id;
     closePopup();
 }
+
 
 function checkInputs() {
     const cronInput = document.getElementById("schedule_cron");
@@ -153,7 +184,7 @@ function createCondition() {
                 <div class="uk-margin">
                     <label class="uk-form-label" for="operator">OPERATOR</label>
                     <select class="uk-select" name="operator_${conditionCounter}"id="operator_${conditionCounter}" required>                      
-                        <option value="=="> = </option>                  
+                        <option value="=="> == </option>                  
                         <option value="!="> != </option>                     
                         <option value=">"> > </option>                  
                         <option value=">="> >= </option>                     
