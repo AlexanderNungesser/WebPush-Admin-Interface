@@ -147,11 +147,8 @@ function createCondition() {
             <a class="uk-accordion-title" href="#">Condition ${conditionCounter}</a>
             <div class="uk-accordion-content uk-padding-small">
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="data_field">DATA FIELD</label>
-                    <select class="uk-select" name ="data_field_${conditionCounter}"id="data_field_${conditionCounter}" required>                      
-                        <option value="streak">Streak</option>                  
-                        <option value="value">Value</option>       
-                    </select>
+                    <label class="uk-form-label" for="data_field">DATA FIELD</label>             
+                    <input class="uk-input" name ="data_field_${conditionCounter} "id="data_field_${conditionCounter}" type="text" placeholder="gamification:groups:xp" required>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="operator">OPERATOR</label>
