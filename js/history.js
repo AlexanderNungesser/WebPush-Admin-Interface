@@ -54,8 +54,20 @@ function deleteHistory(history_id) {
         if (!response.ok) {
             throw new Error(`Error deleting history with ${history_id}`);
         }
-        // reloadHistory();
-    }).catch(err => console.error(err));
+        UIkit.notification({
+            message: `Deletion was successful, you may need to wait a few second and reload the page to see changes take place.`,
+            status: 'info',
+            timeout: window.swac.config.notifyDuration,
+            pos: 'top-center'
+        });
+    }).catch(err => {
+        UIkit.notification({
+            message: err,
+            status: 'error',
+            timeout: window.swac.config.notifyDuration,
+            pos: 'top-center'
+        });
+    });
 }
 
 async function selectHistory(elem) {

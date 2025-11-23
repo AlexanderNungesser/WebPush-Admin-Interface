@@ -20,6 +20,8 @@ document.addEventListener('swac_components_complete', () => {
     initTriggerForm();
     initNotificationDeleteButtons();
     initTriggerDeleteButtons();
+    document.addEventListener(`swac_all_notifications_reloaded`, () => { initNotificationDeleteButtons(); })
+    document.addEventListener(`swac_all_triggers_reloaded`, () => { initTriggerDeleteButtons(); })
     const reloadBtn = document.getElementById("notification-reload");
     reloadBtn.addEventListener("click", reloadNotifications);
 });
@@ -27,7 +29,6 @@ document.addEventListener('swac_components_complete', () => {
 function reloadNotifications() {
     const notifications = document.getElementById("all_notifications");
     notifications.swac_comp.reload();
-    initNotificationDeleteButtons();
 }
 
 function initNotificationDeleteButtons() {
@@ -46,9 +47,20 @@ function deleteFromDB(table, id) {
         if (!response.ok) {
             throw new Error(`Error deleting ${table} with id ${id}`);
         }
-        reloadNotifications();
-        reloadTriggers();
-    }).catch(err => console.error(err));
+        UIkit.notification({
+            message: `Deletion was successful, you may need to wait a few second and reload the page to see changes take place.`,
+            status: 'info',
+            timeout: window.swac.config.notifyDuration,
+            pos: 'top-center'
+        });
+    }).catch(err => {
+        UIkit.notification({
+            message: err,
+            status: 'error',
+            timeout: window.swac.config.notifyDuration,
+            pos: 'top-center'
+        });
+    });
 }
 
 function resetNotificationForm() {
@@ -133,10 +145,11 @@ function resetTriggerForm() {
 function reloadTriggers() {
     const notifications = document.getElementById("all_triggers");
     notifications.swac_comp.reload();
-    initTriggerDeleteButtons();
 }
 
 function initTriggerDeleteButtons() {
+
+    console.log("trigger reload")
     const swacContainer = document.getElementById('all_triggers');
     const cards = swacContainer.querySelectorAll('.uk-card');
     cards.forEach(card => {
