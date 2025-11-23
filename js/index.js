@@ -109,9 +109,10 @@ async function initActions() {
         const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/actions?storage=gamification`);
         const actions = await response.json();
         actions.records.forEach(action => {
-            const opt = document.createElement("label");
-            opt.innerHTML = `<input class="uk-checkbox" name="action_${action.id}" id="action_${action.id}" type="checkbox"> ${action.action_type}`
-            select.appendChild(opt);
+            const option = document.createElement('option');
+            option.value = action.id;
+            option.textContent = action.title;
+            select.appendChild(option);
         });
 
     } catch (err) {
