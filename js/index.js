@@ -35,8 +35,9 @@ function initNotificationDeleteButtons() {
     const swacContainer = document.getElementById('all_notifications');
     const cards = swacContainer.querySelectorAll('.uk-card');
     cards.forEach(card => {
+        card.addEventListener('click', (event) => { event.stopPropagation(); printNotificationData(card.dataset.n_id) });
         const deleteButton = card.querySelector('.notif-delete-btn');
-        deleteButton.addEventListener('click', () => { deleteFromDB('notifications', card.dataset.n_id) });
+        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteFromDB('notifications', card.dataset.n_id) });
     });
 }
 
@@ -149,8 +150,6 @@ function reloadTriggers() {
 }
 
 function initTriggerDeleteButtons() {
-
-    console.log("trigger reload")
     const swacContainer = document.getElementById('all_triggers');
     const cards = swacContainer.querySelectorAll('.uk-card');
     cards.forEach(card => {
@@ -222,4 +221,47 @@ function createCondition() {
         li.remove();
     });
     conditionCounter++;
+}
+
+async function printNotificationData(id) {
+    try {
+
+        const notifRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/notifications?storage=gamification&filter=id,eq,${id}`);
+        if (!notifRes.ok) throw new Error("Notification not found");
+        const notification = await notifRes.json();
+
+        const triggerId = notification.records[0].trigger_id;
+        if (!triggerId) throw new Error("Notification has no triggerId");
+
+        const triggerRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/triggers?storage=gamification&filter=id,eq,${triggerId}`);
+        if (!triggerRes.ok) throw new Error("Trigger not found");
+        const trigger = await triggerRes.json();
+
+        const mappingRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/trigger_conditions?storage=gamification&filter=trigger_id,eq,${triggerId}`);
+        if (!mappingRes.ok) throw new Error("Could not load trigger-condition mapping");
+        const conditionMappings = await mappingRes.json();
+
+        const conditions = [];
+        for (const map of conditionMappings.records) {
+            const condRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/conditions?storage=gamification&filter=id,eq,${map.condition_id}`);
+            if (condRes.ok) {
+                condResJson = await condRes.json()
+                conditions.push(condResJson.records[0]);
+            }
+        }
+
+        const result = {
+            notification_id: id,
+            ...notification.records[0],
+            trigger: {
+                ...trigger.records[0],
+                conditions: conditions
+            }
+        };
+        console.log(`=====NOTIFICATIONDETAILS=====\n`, JSON.stringify(result, null, 2), "\n", `============================`);
+        return result;
+
+    } catch (err) {
+        console.error("Error getting notification details:", err.message);
+    }
 }
