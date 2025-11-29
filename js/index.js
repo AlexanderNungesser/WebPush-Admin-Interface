@@ -17,6 +17,7 @@ window['trigger_form_swac_options'] = {
 document.addEventListener('swac_components_complete', () => {
     initPopup();
     initActions();
+    initConditions();
     initTriggerForm();
     initNotificationDeleteButtons();
     initTriggerDeleteButtons();
@@ -37,7 +38,7 @@ function initNotificationDeleteButtons() {
     cards.forEach(card => {
         card.addEventListener('click', (event) => { event.stopPropagation(); printNotificationData(card.dataset.n_id) });
         const deleteButton = card.querySelector('.notif-delete-btn');
-        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteFromDB('notifications', card.dataset.n_id) });
+        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteFromDB('notification', card.dataset.n_id) });
     });
 }
 
@@ -107,7 +108,7 @@ async function initActions() {
     if (!select) return;
 
     try {
-        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/actions?storage=gamification`);
+        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/action?storage=gamification`);
         const actions = await response.json();
         actions.records.forEach(action => {
             const option = document.createElement('option');
@@ -154,7 +155,7 @@ function initTriggerDeleteButtons() {
     const cards = swacContainer.querySelectorAll('.uk-card');
     cards.forEach(card => {
         const deleteButton = card.querySelector('.notif-delete-btn');
-        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteFromDB('triggers', card.dataset.t_id); });
+        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteFromDB('trigger', card.dataset.t_id); });
     });
 }
 function selectTrigger(elem) {
@@ -183,6 +184,15 @@ function checkInputs() {
     }
 }
 
+var condition_types = [];
+async function initConditions() {
+    try {
+        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/condition_type?storage=gamification`);
+        condition_types = await response.json().then(data => data.records);
+    } catch (err) {
+        console.error("Error loading condition: ", err);
+    }
+}
 
 var conditionCounter = 1;
 function createCondition() {
@@ -193,7 +203,7 @@ function createCondition() {
             <div class="uk-accordion-content uk-padding-small">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="data_field">DATA FIELD</label>             
-                    <input class="uk-input" name ="data_field_${conditionCounter} "id="data_field_${conditionCounter}" type="text" placeholder="gamification:groups:xp" required>
+                    <select class="uk-select" name="data_field_${conditionCounter}" id="data_field_${conditionCounter}" required></select>
                 </div>
                 <div class="uk-margin">
                     <label class="uk-form-label" for="operator">OPERATOR</label>
@@ -216,7 +226,13 @@ function createCondition() {
             </div>
         `;
     conditionList.appendChild(li);
-
+    const dataFieldSelect = document.getElementById(`data_field_${conditionCounter}`);
+    condition_types.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type.id;
+        option.textContent = type.type;
+        dataFieldSelect.appendChild(option);
+    });
     li.querySelector(".remove_condition_btn").addEventListener("click", () => {
         li.remove();
     });

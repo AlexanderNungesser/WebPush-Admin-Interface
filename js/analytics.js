@@ -62,7 +62,7 @@ async function loadFurtherStatistics() {
     document.getElementById("stat-notifications").textContent = json.records.length;
 
     //total groups(devices)
-    url = `${window.location.origin}/SmartDataAirquality/smartdata/records/groups?storage=gamification`
+    url = `${window.location.origin}/SmartDataAirquality/smartdata/records/group?storage=gamification`
     response = await fetch(url);
     json = await response.json();
     document.getElementById("stat-groups").textContent = json.records.length;

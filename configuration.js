@@ -18,9 +18,6 @@ var SWAC_config = {
     // Backend connection settings
     datasources: [
         {
-            url: "/WebPush-Admin-Interface/data/[fromName]"
-        },
-        {
             url: "/SmartDataAirquality/smartdata/[iface]/[fromName]?storage=gamification",
             interfaces: {
                 get: ['GET', 'records'],
@@ -30,14 +27,18 @@ var SWAC_config = {
                 update: ['PUT', 'records'],
                 delete: ['DELETE', 'records']
             },
-            exclude: ['createNotification', 'createTrigger']
+            exclude: ['createNotification', 'createTrigger', 'routes.json']
         },
         {
             url: "/WebPush/webpush/[iface]/[fromName]",
             interfaces: {
                 create: ['POST', 'admin'],
-            }
-        }
+            },
+            exclude: ['routes.json']
+        },
+        {
+            url: "/WebPush-Admin-Interface/data/[fromName]"
+        },
     ],
     // Options for progressive webapp
     progressive: {
