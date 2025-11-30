@@ -249,7 +249,7 @@ async function printNotificationData(id) {
         const triggerId = notification.records[0].trigger_id;
         if (!triggerId) throw new Error("Notification has no triggerId");
 
-        const triggerRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/triggers?storage=gamification&filter=id,eq,${triggerId}`);
+        const triggerRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/trigger?storage=gamification&filter=id,eq,${triggerId}`);
         if (!triggerRes.ok) throw new Error("Trigger not found");
         const trigger = await triggerRes.json();
 
