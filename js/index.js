@@ -242,7 +242,7 @@ function createCondition() {
 async function printNotificationData(id) {
     try {
 
-        const notifRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/notifications?storage=gamification&filter=id,eq,${id}`);
+        const notifRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/notification?storage=gamification&filter=id,eq,${id}`);
         if (!notifRes.ok) throw new Error("Notification not found");
         const notification = await notifRes.json();
 
@@ -253,13 +253,13 @@ async function printNotificationData(id) {
         if (!triggerRes.ok) throw new Error("Trigger not found");
         const trigger = await triggerRes.json();
 
-        const mappingRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/trigger_conditions?storage=gamification&filter=trigger_id,eq,${triggerId}`);
+        const mappingRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/trigger_condition?storage=gamification&filter=trigger_id,eq,${triggerId}`);
         if (!mappingRes.ok) throw new Error("Could not load trigger-condition mapping");
         const conditionMappings = await mappingRes.json();
 
         const conditions = [];
         for (const map of conditionMappings.records) {
-            const condRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/conditions?storage=gamification&filter=id,eq,${map.condition_id}`);
+            const condRes = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/condition?storage=gamification&filter=id,eq,${map.condition_id}`);
             if (condRes.ok) {
                 condResJson = await condRes.json()
                 conditions.push(condResJson.records[0]);
