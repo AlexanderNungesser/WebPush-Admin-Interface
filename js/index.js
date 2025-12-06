@@ -220,6 +220,17 @@ function createCondition() {
                     <label class="uk-form-label" for="threshold">THRESHOLD</label>
                     <input class="uk-input" name="threshold_${conditionCounter}" id="threshold_${conditionCounter}" type="number" required>
                 </div>
+                <div class="uk-margin">    
+                    <label class="uk-form-label" for="period_${conditionCounter}">Select Period</label>
+                    <select class="uk-select" name="period_${conditionCounter}" id="period_${conditionCounter}" onchange="periodSelectionChanged(event, ${conditionCounter})"> 
+                            <option value="1"> All </option>                     
+                            <option value="7"> Date </option>                  
+                            <option value="8"> Daily Time </option>                     
+                            <option value="9"> Range </option>          
+                    </select>
+                </div>
+                <div class="uk-margin" id="period_options_${conditionCounter}">     
+                </div>
                 <button class="uk-button uk-button-danger uk-button-small remove_condition_btn" type="button">
                     Remove
                 </button>
@@ -237,6 +248,42 @@ function createCondition() {
         li.remove();
     });
     conditionCounter++;
+}
+
+function periodSelectionChanged(e, conditionID) {
+    const value = e.target.value;
+    const optionsDiv = document.getElementById(`period_options_${conditionID}`);
+    optionsDiv.innerHTML = "";
+
+    switch (value) {
+        case "7":
+            optionsDiv.innerHTML = `
+                <label class="uk-form-label" for="period_date_${conditionID}">Date:</label>
+                <input class="uk-input" type="date" name="period_date_${conditionID}" required>
+            `;
+            break;
+
+        case "8":
+            optionsDiv.innerHTML = `
+                <label class="uk-form-label" for="daily_time_start_${conditionID}">Start: </label>
+                <input class="uk-input" type="time" name="daily_time_start_${conditionID}" required>
+                <label class="uk-form-label" for="daily_time_end_${conditionID}">End:</label>
+                <input class="uk-input" type="time" name="daily_time_end_${conditionID}" required>
+            `;
+            break;
+
+        case "9":
+            optionsDiv.innerHTML = `
+                <label class="uk-form-label" for="range_start_${conditionID}">From: </label>
+                <input class="uk-input" type="datetime-local" name="range_start_${conditionID}" required>
+                <label class="uk-form-label" for="range_end_${conditionID}">Until:</label>
+                <input class="uk-input" type="datetime-local" name="range_end_${conditionID}" required>       
+            `;
+            break;
+
+        default:
+            break;
+    }
 }
 
 async function printNotificationData(id) {
