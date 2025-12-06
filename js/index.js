@@ -223,10 +223,10 @@ function createCondition() {
                 <div class="uk-margin">    
                     <label class="uk-form-label" for="period_${conditionCounter}">Select Period</label>
                     <select class="uk-select" name="period_${conditionCounter}" id="period_${conditionCounter}" onchange="periodSelectionChanged(event, ${conditionCounter})"> 
-                            <option value="1"> All </option>                     
-                            <option value="7"> Date </option>                  
-                            <option value="8"> Daily Time </option>                     
-                            <option value="9"> Range </option>          
+                            <option value="all"> All </option>                     
+                            <option value="date"> Date </option>                  
+                            <option value="daily_time"> Daily Time </option>                     
+                            <option value="range"> Range </option>          
                     </select>
                 </div>
                 <div class="uk-margin" id="period_options_${conditionCounter}">     
@@ -256,14 +256,14 @@ function periodSelectionChanged(e, conditionID) {
     optionsDiv.innerHTML = "";
 
     switch (value) {
-        case "7":
+        case "date":
             optionsDiv.innerHTML = `
                 <label class="uk-form-label" for="period_date_${conditionID}">Date:</label>
                 <input class="uk-input" type="date" name="period_date_${conditionID}" required>
             `;
             break;
 
-        case "8":
+        case "daily_time":
             optionsDiv.innerHTML = `
                 <label class="uk-form-label" for="daily_time_start_${conditionID}">Start: </label>
                 <input class="uk-input" type="time" name="daily_time_start_${conditionID}" required>
@@ -272,7 +272,7 @@ function periodSelectionChanged(e, conditionID) {
             `;
             break;
 
-        case "9":
+        case "range":
             optionsDiv.innerHTML = `
                 <label class="uk-form-label" for="range_start_${conditionID}">From: </label>
                 <input class="uk-input" type="datetime-local" name="range_start_${conditionID}" required>
