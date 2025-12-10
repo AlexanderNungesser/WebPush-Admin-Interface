@@ -225,7 +225,7 @@ function createCondition() {
                     <select class="uk-select" name="period_${conditionCounter}" id="period_${conditionCounter}" onchange="periodSelectionChanged(event, ${conditionCounter})"> 
                             <option value="all"> All </option>                     
                             <option value="date"> Date </option>                  
-                            <option value="daily_time"> Daily Time </option>                     
+                            <option value="time"> Daily Time </option>                     
                             <option value="range"> Range </option>          
                     </select>
                 </div>
@@ -263,7 +263,7 @@ function periodSelectionChanged(e, conditionID) {
             `;
             break;
 
-        case "daily_time":
+        case "time":
             optionsDiv.innerHTML = `
                 <label class="uk-form-label" for="daily_time_start_${conditionID}">Start: </label>
                 <input class="uk-input" type="time" name="daily_time_start_${conditionID}" required>
