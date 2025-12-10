@@ -17,8 +17,7 @@ window['trigger_form_swac_options'] = {
 document.addEventListener('swac_components_complete', () => {
     initPopup();
     initActions();
-    initConditions();
-    initTriggerForm();
+    initTriggerSelection();
     initNotificationDeleteButtons();
     initTriggerDeleteButtons();
     document.addEventListener(`swac_all_notifications_reloaded`, () => { initNotificationDeleteButtons(); })
@@ -127,12 +126,6 @@ function initTriggerSelection() {
     entries.forEach(entry => entry.onclick = () => selectTrigger(entry))
 }
 
-function initTriggerForm() {
-    const addConditionBtn = document.getElementById("add_condition_btn");
-    addConditionBtn.addEventListener("click", createCondition);
-    initTriggerSelection();
-}
-
 function resetTriggerForm() {
     const conditionList = document.getElementById("conditions_list");
     while (conditionList.firstChild) {
@@ -181,108 +174,6 @@ function checkInputs() {
     } else {
         cronInput.disabled = false;
         cronInput.classList.remove("hide");
-    }
-}
-
-var condition_types = [];
-async function initConditions() {
-    try {
-        const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/condition_type?storage=gamification`);
-        condition_types = await response.json().then(data => data.records);
-    } catch (err) {
-        console.error("Error loading condition: ", err);
-    }
-}
-
-var conditionCounter = 1;
-function createCondition() {
-    const conditionList = document.getElementById("conditions_list");
-    const li = document.createElement("li");
-    li.innerHTML = `
-            <a class="uk-accordion-title" href="#">Condition ${conditionCounter}</a>
-            <div class="uk-accordion-content uk-padding-small">
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="data_field">DATA FIELD</label>             
-                    <select class="uk-select" name="data_field_${conditionCounter}" id="data_field_${conditionCounter}" required></select>
-                </div>
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="operator">OPERATOR</label>
-                    <select class="uk-select" name="operator_${conditionCounter}"id="operator_${conditionCounter}" required>                      
-                        <option value="=="> == </option>                  
-                        <option value="!="> != </option>                     
-                        <option value=">"> > </option>                  
-                        <option value=">="> >= </option>                     
-                        <option value="<"> < </option>                  
-                        <option value="<="> <= </option>       
-                    </select>
-                </div>
-                <div class="uk-margin">     
-                    <label class="uk-form-label" for="threshold">THRESHOLD</label>
-                    <input class="uk-input" name="threshold_${conditionCounter}" id="threshold_${conditionCounter}" type="number" required>
-                </div>
-                <div class="uk-margin">    
-                    <label class="uk-form-label" for="period_${conditionCounter}">Select Period</label>
-                    <select class="uk-select" name="period_${conditionCounter}" id="period_${conditionCounter}" onchange="periodSelectionChanged(event, ${conditionCounter})"> 
-                            <option value="all"> All </option>                     
-                            <option value="date"> Date </option>                  
-                            <option value="time"> Daily Time </option>                     
-                            <option value="range"> Range </option>          
-                    </select>
-                </div>
-                <div class="uk-margin" id="period_options_${conditionCounter}">     
-                </div>
-                <button class="uk-button uk-button-danger uk-button-small remove_condition_btn" type="button">
-                    Remove
-                </button>
-            </div>
-        `;
-    conditionList.appendChild(li);
-    const dataFieldSelect = document.getElementById(`data_field_${conditionCounter}`);
-    condition_types.forEach(type => {
-        const option = document.createElement('option');
-        option.value = type.id;
-        option.textContent = type.type;
-        dataFieldSelect.appendChild(option);
-    });
-    li.querySelector(".remove_condition_btn").addEventListener("click", () => {
-        li.remove();
-    });
-    conditionCounter++;
-}
-
-function periodSelectionChanged(e, conditionID) {
-    const value = e.target.value;
-    const optionsDiv = document.getElementById(`period_options_${conditionID}`);
-    optionsDiv.innerHTML = "";
-
-    switch (value) {
-        case "date":
-            optionsDiv.innerHTML = `
-                <label class="uk-form-label" for="period_date_${conditionID}">Date:</label>
-                <input class="uk-input" type="date" name="period_date_${conditionID}" required>
-            `;
-            break;
-
-        case "time":
-            optionsDiv.innerHTML = `
-                <label class="uk-form-label" for="daily_time_start_${conditionID}">Start: </label>
-                <input class="uk-input" type="time" name="daily_time_start_${conditionID}" required>
-                <label class="uk-form-label" for="daily_time_end_${conditionID}">End:</label>
-                <input class="uk-input" type="time" name="daily_time_end_${conditionID}" required>
-            `;
-            break;
-
-        case "range":
-            optionsDiv.innerHTML = `
-                <label class="uk-form-label" for="range_start_${conditionID}">From: </label>
-                <input class="uk-input" type="datetime-local" name="range_start_${conditionID}" required>
-                <label class="uk-form-label" for="range_end_${conditionID}">Until:</label>
-                <input class="uk-input" type="datetime-local" name="range_end_${conditionID}" required>       
-            `;
-            break;
-
-        default:
-            break;
     }
 }
 
