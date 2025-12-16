@@ -19,5 +19,12 @@
         "rto": "analytics.html",
         "name": "Analytics",
         "parent": ""
+    },
+    {
+        "id": 30,
+        "rfrom": "*",
+        "rto": "achievements.html",
+        "name": "Achievements",
+        "parent": ""
     }
 ]
