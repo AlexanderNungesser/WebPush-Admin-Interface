@@ -3,7 +3,7 @@ window['notification_form_swac_options'] = {
         resetNotificationForm();
         reloadNotifications();
     },
-    target: 'createNotification'
+    target: 'notification'
 }
 
 window['trigger_form_swac_options'] = {
@@ -11,7 +11,7 @@ window['trigger_form_swac_options'] = {
         resetTriggerForm();
         reloadTriggers();
     },
-    target: 'createTrigger'
+    target: 'trigger'
 }
 
 document.addEventListener('swac_components_complete', () => {
@@ -148,7 +148,30 @@ function initTriggerDeleteButtons() {
     const cards = swacContainer.querySelectorAll('.uk-card');
     cards.forEach(card => {
         const deleteButton = card.querySelector('.notif-delete-btn');
-        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteFromDB('trigger', card.dataset.t_id); });
+        deleteButton.addEventListener('click', (event) => { event.stopPropagation(); deleteTrigger(card.dataset.t_id); });
+    });
+}
+
+function deleteTrigger(id) {
+    fetch(`${window.location.origin}/WebPush/webpush/admin/trigger/${id}`, {
+        method: "DELETE"
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error(`Error deleting trigger with id ${id}`);
+        }
+        UIkit.notification({
+            message: `Deletion was successful, you may need to wait a few second and reload the page to see changes take place.`,
+            status: 'info',
+            timeout: window.swac.config.notifyDuration,
+            pos: 'top-center'
+        });
+    }).catch(err => {
+        UIkit.notification({
+            message: err,
+            status: 'error',
+            timeout: window.swac.config.notifyDuration,
+            pos: 'top-center'
+        });
     });
 }
 function selectTrigger(elem) {

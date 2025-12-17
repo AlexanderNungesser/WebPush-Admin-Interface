@@ -18,6 +18,18 @@ var SWAC_config = {
     // Backend connection settings
     datasources: [
         {
+            url: "/WebPush/webpush/[iface]/[fromName]",
+            interfaces: {
+                create: ['POST', 'admin'],
+            },
+            exclude: [
+                'routes.json',
+                'view_triggers',
+                'view_notifications_with_type',
+                'view_sent_notifications'
+            ]
+        },
+        {
             url: "/SmartDataAirquality/smartdata/[iface]/[fromName]?storage=gamification",
             interfaces: {
                 get: ['GET', 'records'],
@@ -26,13 +38,6 @@ var SWAC_config = {
                 create: ['POST', 'records'],
                 update: ['PUT', 'records'],
                 delete: ['DELETE', 'records']
-            },
-            exclude: ['createNotification', 'createTrigger', 'routes.json']
-        },
-        {
-            url: "/WebPush/webpush/[iface]/[fromName]",
-            interfaces: {
-                create: ['POST', 'admin'],
             },
             exclude: ['routes.json']
         },
