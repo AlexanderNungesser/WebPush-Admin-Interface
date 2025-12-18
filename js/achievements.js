@@ -1,5 +1,10 @@
-document.addEventListener('swac_components_complete', () => {
+import{getConditionTemplate, initConditions, initPeriods} from './condition.js'
+
+document.addEventListener('swac_components_complete', async () => {
     loadAchievementTiers();
+    await initConditions();
+    await initPeriods();
+    initConditionForm();
 });
 
 async function loadAchievementTiers(){
@@ -37,4 +42,8 @@ async function getConditionsForTrigger(triggerId) {
 
 function clickCondition(conditionId){
     console.log("clicked", conditionId)
+}
+
+function initConditionForm(){
+    document.querySelector('.right-panel').appendChild(getConditionTemplate(0));
 }

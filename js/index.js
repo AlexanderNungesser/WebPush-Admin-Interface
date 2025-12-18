@@ -1,3 +1,5 @@
+import {initConditions, initPeriods, getConditionTemplate} from "./condition.js";
+
 window['notification_form_swac_options'] = {
     customAfterSave: () => {
         resetNotificationForm();
@@ -14,14 +16,17 @@ window['trigger_form_swac_options'] = {
     target: 'trigger'
 }
 
-document.addEventListener('swac_components_complete', () => {
+document.addEventListener('swac_components_complete', async () => {
     initPopup();
     initActions();
     initTriggerSelection();
     initNotificationDeleteButtons();
     initTriggerDeleteButtons();
+    initConditions();
+    initPeriods();
     document.addEventListener(`swac_all_notifications_reloaded`, () => { initNotificationDeleteButtons(); })
     document.addEventListener(`swac_all_triggers_reloaded`, () => { initTriggerDeleteButtons(); })
+    document.getElementById("add_condition_btn").addEventListener("click", createCondition);
     const reloadBtn = document.getElementById("notification-reload");
     reloadBtn.addEventListener("click", reloadNotifications);
 });
@@ -180,6 +185,16 @@ function selectTrigger(elem) {
     closePopup();
 }
 
+var conditionCounter = 1;
+function createCondition() {
+    const conditionList = document.getElementById("conditions_list");
+    const newCondition = getConditionTemplate(conditionCounter);
+    conditionList.appendChild(newCondition);
+    newCondition.querySelector(".remove_condition_btn").addEventListener("click", () => {
+        newCondition.remove();
+    });
+    conditionCounter++;
+}
 
 function checkInputs() {
     const cronInput = document.getElementById("schedule_cron");
