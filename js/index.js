@@ -1,4 +1,4 @@
-import {initConditions, initPeriods, getConditionTemplate} from "./condition.js";
+import { initConditions, initPeriods, getConditionTemplate } from "./condition.js";
 
 window['notification_form_swac_options'] = {
     customAfterSave: () => {
@@ -198,6 +198,7 @@ function createCondition() {
 
 function checkInputs() {
     const cronInput = document.getElementById("schedule_cron");
+    const cronHelp = document.getElementById("help_cron");
     const timeInput = document.getElementById("schedule_timestamp");
     if (cronInput.value.trim() !== "") {
         timeInput.disabled = true;
@@ -209,9 +210,13 @@ function checkInputs() {
     if (timeInput.value.trim() !== "") {
         cronInput.disabled = true;
         cronInput.classList.add("hide");
+        cronHelp.disabled = true;
+        cronHelp.classList.add("hide");
     } else {
         cronInput.disabled = false;
         cronInput.classList.remove("hide");
+        cronHelp.disabled = false;
+        cronHelp.classList.remove("hide");
     }
 }
 
