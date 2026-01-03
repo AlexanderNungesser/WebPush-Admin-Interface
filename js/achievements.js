@@ -16,6 +16,7 @@ async function loadAchievementTiers() {
             const div = document.createElement("div");
             div.className = "tier-item";
             div.textContent = `Condition ${condition.id}`;
+            div.id = `condition_${condition.id}`
             div.onclick = () => clickCondition(condition.id);
             tier.prepend(div);
         };
@@ -43,12 +44,12 @@ async function getConditionsForTrigger(triggerId) {
 var currentConditionId;
 async function clickCondition(conditionId) {
     currentConditionId = conditionId;
-    const rightPanel = document.querySelector(".right-panel");
-    rightPanel.classList.remove("uk-hidden")
     try {
         const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/condition?storage=gamification&filter=id,eq,${conditionId}`);
         const data = (await response.json()).records[0];
         loadDataIntoCondition(data, document.getElementById("condition_display"))
+        const rightPanel = document.querySelector(".right-panel");
+        rightPanel.classList.remove("uk-hidden")
     } catch (err) {
         console.error("Error loading condition: ", err);
         return [];
@@ -59,29 +60,46 @@ function initConditionForm() {
     const conditionDisplay = document.getElementById('condition_display');
     conditionDisplay.prepend(getConditionTemplate(0));
     document.getElementById("closePanel").addEventListener("click", closeRightPanel);
+    document.querySelector('.remove_condition_btn').addEventListener("click", deleteCondition);
 
-    const saveButton = document.createElement("button");
-    saveButton.type = "button";
-    saveButton.classList.add("uk-button", "uk-button-primary", "uk-button-small");
-    const text = document.createTextNode("Save");
-    saveButton.appendChild(text);
-    saveButton.addEventListener("click", saveCondition);
-    const container = conditionDisplay.querySelector("#buttons");
-    if (container) {
-        container.appendChild(saveButton);
-    }
+    // const saveButton = document.createElement("button");
+    // saveButton.type = "button";
+    // saveButton.classList.add("uk-button", "uk-button-primary", "uk-button-small");
+    // const text = document.createTextNode("Save");
+    // saveButton.appendChild(text);
+    // saveButton.addEventListener("click", saveCondition);
+    // const container = conditionDisplay.querySelector("#buttons");
+    // if (container) {
+    //     container.appendChild(saveButton);
+    // }
+}
+
+function deleteCondition() {
+    fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/condition/${currentConditionId}?storage=gamification`, {
+        method: "DELETE"
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error(`Error deleting condition with id ${currentConditionId}`);
+        }
+        document.getElementById(`condition_${currentConditionId}`).remove();
+        closeRightPanel();
+        UIkit.notification({
+            message: `Deletion was successful`,
+            status: 'info',
+            timeout: window.swac.config.notifyDuration,
+            pos: 'top-center'
+        });
+    }).catch(err => {
+        UIkit.notification({
+            message: err,
+            status: 'error',
+            timeout: window.swac.config.notifyDuration,
+            pos: 'top-center'
+        });
+    });
 }
 
 function closeRightPanel() {
     const rightPanel = document.querySelector(".right-panel");
     rightPanel.classList.add("uk-hidden");
-}
-
-function saveCondition() {
-    UIkit.notification({
-        message: `Das funktioniert noch nicht`,
-        status: 'info',
-        timeout: window.swac.config.notifyDuration,
-        pos: 'top-center'
-    });
 }
