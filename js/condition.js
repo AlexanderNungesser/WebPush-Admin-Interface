@@ -44,7 +44,7 @@ export function getConditionTemplate(conditionCounter) {
             <div class="uk-accordion-content uk-padding-small">
                 <div class="uk-margin">
                     <label class="uk-form-label" for="data_field">DATA FIELD</label>             
-                    <select class="uk-select data_field" name="data_field${suffix}" id="data_field${suffix}" required>
+                    <select class="uk-select data_field" name="type_id${suffix}" id="data_field${suffix}" required>
                     </select>
                 </div>
                 <div class="uk-margin">
@@ -64,7 +64,7 @@ export function getConditionTemplate(conditionCounter) {
                 </div>
                 <div class="uk-margin" id="period_div${suffix}">    
                     <label class="uk-form-label" for="period${suffix}">Select Period</label>
-                    <select class="uk-select period" name="period${suffix}" id="period${suffix}">        
+                    <select class="uk-select period" name="period_id${suffix}" id="period${suffix}">        
                     </select>
                 </div>
                 <div class="uk-margin" id="period_options${suffix}">     
@@ -98,13 +98,13 @@ function dataSelectionChanged(e, periodDiv, optionsDiv, suffix) {
     optionsDiv.innerHTML = "";
     if (periodic) {
         periodDiv.innerHTML = `
-            <label class="uk-form-label" for="period${suffix}">Select Period</label>
-            <select class="uk-select period" name="period${suffix}" id="period${suffix}">        
+            <label class="uk-form-label" for="period_id${suffix}">Select Period</label>
+            <select class="uk-select period" name="period_id${suffix}" id="period${suffix}">        
             </select>
         `;
         const periodSelect = periodDiv.querySelector(`#period${suffix}`);
         initPeriod(periodSelect);
-        periodSelect.onchange = (ev) => { periodSelectionChanged(ev, document.querySelector(`#period_options${suffix}`, suffix)) }
+        periodSelect.onchange = (ev) => { periodSelectionChanged(ev, document.querySelector(`#period_options${suffix}`), suffix) }
     }
 }
 
