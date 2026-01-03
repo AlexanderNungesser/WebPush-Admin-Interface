@@ -130,9 +130,7 @@ async function saveCondition(e) {
                 return [k, v];
             })
         );
-
         payload.trigger_id = Number(currentTriggerId);
-        console.log(payload)
         const res = await fetch(`${window.location.origin}/WebPush/webpush/admin/trigger/condition`, {
             method: "POST",
             headers: {
@@ -161,6 +159,7 @@ async function saveCondition(e) {
             pos: 'top-center'
         });
     }
+    closeRightPanel();
 }
 
 function closeRightPanel() {
