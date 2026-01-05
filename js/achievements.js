@@ -13,10 +13,47 @@ function initAchievementAddButton() {
     addButton.addEventListener("click", openAchievementForm);
 
     const achievementForm = document.getElementById("achievement_form");
-    achievementForm.addEventListener("submit", e => {
-        saveForm(e, `${window.location.origin}/WebPush/webpush/admin/achievement`);
-        document.getElementById("achievement_form").reset();
+    achievementForm.addEventListener("submit", async e => {
+        e.preventDefault();
+        const uploadedPaths = await uploadImages();
+        if (!uploadedPaths) return;
+        const payload = preprocessForm(e.target, uploadedPaths);
+        await savePayload(payload, '/WebPush/webpush/admin/achievement');
+        achievementForm.reset();
+        closeRightPanel();
     });
+}
+
+async function uploadImages() {
+    const form = document.getElementById('achievement_form');
+    const fileInputs = form.querySelectorAll('input[type="file"]');
+
+    const paths = {};
+    for (const input of fileInputs) {
+        const file = input.files[0];
+        if (!file) continue;
+
+        const uploadData = new FormData();
+        uploadData.append('file', file);
+
+        try {
+            const response = await fetch(`${window.location.origin}/WebPush/webpush/admin/achievement-icon`, {
+                method: 'POST',
+                body: uploadData
+            });
+
+            if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+
+            const result = await response.json();
+            paths[input.name] = result.path;
+        } catch (err) {
+            console.error('Upload failed for', input.name, err);
+            alert(`Upload failed for ${input.name}`);
+            return null;
+        }
+    }
+
+    return paths;
 }
 
 function openAchievementForm() {
@@ -139,28 +176,45 @@ function addCondition(triggerId) {
     saveButton.classList.add("uk-button", "uk-button-primary", "uk-button-small");
     const text = document.createTextNode("Save");
     saveButton.appendChild(text);
-    conditionForm.addEventListener("submit", e => { saveForm(e, `${window.location.origin}/WebPush/webpush/admin/trigger/condition/${currentTriggerId}`) });
+    conditionForm.addEventListener("submit", e => {
+        e.preventDefault();
+        const payload = preprocessForm(e.target);
+        savePayload(payload, `${window.location.origin}/WebPush/webpush/admin/trigger/condition/${currentTriggerId}`)
+        closeRightPanel();
+    });
     const container = conditionForm.querySelector("#buttons");
     if (container) {
         container.appendChild(saveButton);
     }
 }
 
-async function saveForm(e, url) {
-    e.preventDefault()
+function preprocessForm(form, overrides = {}) {
+    const payload = {};
+
+    for (const input of form.elements) {
+        if (!input.name) continue;
+
+        if (overrides[input.name]) {
+            payload[input.name] = overrides[input.name];
+            continue;
+        }
+
+        let value = input.value;
+
+        if (value === "") value = null;
+        else if (!isNaN(value)) value = Number(value);
+
+        payload[input.name] = value;
+    }
+
+    return payload;
+}
+
+async function savePayload(payload, url) {
     try {
-        const payload = Object.fromEntries(
-            [...new FormData(e.target)].map(([k, v]) => {
-                if (v === "") return [k, null];
-                if (!isNaN(v)) return [k, Number(v)];
-                return [k, v];
-            })
-        );
         const res = await fetch(url, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         });
 
@@ -185,8 +239,8 @@ async function saveForm(e, url) {
             pos: 'top-center'
         });
     }
-    window.location.reload();
 }
+
 
 function closeRightPanel() {
     const rightPanel = document.querySelector(".right_panel");
