@@ -44,7 +44,7 @@
   overflow-y: scroll;
 }
 
-#popup-overlay {
+#popup_content {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -54,7 +54,7 @@
   z-index: 2;
 }
 
-#popup-overlay.show {
+#popup_content.show {
   display: flex;
   animation: fadeIn 0.25s ease;
 }
@@ -80,7 +80,7 @@
   height: 8%;
 }
 
-.popup-content {
+.popup_content {
   display: flex;
   flex: 1;
   min-height: 0;

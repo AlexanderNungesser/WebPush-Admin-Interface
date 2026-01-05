@@ -75,7 +75,7 @@ function resetNotificationForm() {
 }
 
 function initPopup() {
-    const overlay = document.getElementById("popup-overlay");
+    const overlay = document.getElementById("popup_content");
     const openBtn = document.getElementById("open-trigger-btn");
     const closeBtn = document.getElementById("popup-close");
     const reloadBtn = document.getElementById("popup-reload");
@@ -101,7 +101,7 @@ function initPopup() {
 };
 
 function closePopup() {
-    const overlay = document.getElementById("popup-overlay");
+    const overlay = document.getElementById("popup_content");
     overlay.classList.remove("show");
     document.body.style.overflow = "";
     resetTriggerForm();
