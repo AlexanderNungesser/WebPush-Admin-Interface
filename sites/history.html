@@ -23,17 +23,17 @@
     <div class="layout">
         <aside id="side_navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush"></aside>
         <main class="main_content">
-            <div class="reload-header">
+            <div class="reload_header">
                 <h2>Notification history</h2>
                 <!-- Does not work for some reason-->
-                <!-- <button id="history-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>  --> 
+                <!-- <button id="history-reload" class="header_btn" aria-label="Reload"><span uk-icon="refresh"></span></button>  --> 
             </div>
             <div id="notification_history" swa="Present FROM view_sent_notifications TEMPLATE present_webPush_history"></div>
         </main>
-        <aside class="right-panel">
-            <div class="reload-header">
+        <aside class="right_panel">
+            <div class="reload_header">
                 <h2>Notification analytics</h2>
-                <button id="history-statistics-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
+                <button id="history-statistics-reload" class="header_btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
             </div>
             <div id="history_chart" swa="Charts"></div>
         </aside>

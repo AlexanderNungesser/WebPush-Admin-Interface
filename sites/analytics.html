@@ -23,9 +23,9 @@
     <div class="layout">
         <aside id="side_navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush"></aside>
         <main class="main_content">
-            <div class="reload-header">
+            <div class="reload_header">
                 <h2>General notification statistics</h2>
-                <button id="statistics-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
+                <button id="statistics-reload" class="header_btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
             </div>
             <div class="uk-margin">
                 <label class="uk-form-label">Select data source</label>
@@ -38,28 +38,28 @@
             </div>
             <div class="chart">
                 <div id="statistics_chart" swa="Charts"></div> 
-                <div class="chart-description">
-                    Since <span id="desc-timestamp" class="highlight-number">the beginning</span>, a total of <span id="desc-amount" class="highlight-number">0</span> notifications have been sent to users to encourage them to collect air quality data.
+                <div class="chart_description">
+                    Since <span id="desc-timestamp" class="highlight_number">the beginning</span>, a total of <span id="desc-amount" class="highlight_number">0</span> notifications have been sent to users to encourage them to collect air quality data.
                 </div>
             </div>
         </main>
-        <aside class="right-panel">
-            <div class="reload-header">
+        <aside class="right_panel">
+            <div class="reload_header">
                 <h2>Further statistics</h2>
-                <button id="further-statistics-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button> 
+                <button id="further-statistics-reload" class="header_btn" aria-label="Reload"><span uk-icon="refresh"></span></button> 
             </div>
-            <div class="stats-container">
-                <div class="stat-item">
+            <div class="stats_container">
+                <div class="stat_item">
                     <h3>Notifications sent</h3>
-                    <div class="stat-number" id="stat-notifications"></div>
+                    <div class="stat_number" id="stat-notifications"></div>
                 </div>  
-                <div class="stat-item">
+                <div class="stat_item">
                     <h3>Groups</h3>
-                    <div class="stat-number" id="stat-groups"></div>
+                    <div class="stat_number" id="stat-groups"></div>
                 </div>
-                <div class="stat-item">
+                <div class="stat_item">
                     <h3>Users</h3>
-                    <div class="stat-number" id="stat-members"></div>
+                    <div class="stat_number" id="stat-members"></div>
                 </div>
             </div>
         </aside>

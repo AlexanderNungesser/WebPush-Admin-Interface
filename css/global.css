@@ -39,18 +39,18 @@ a {
     text-decoration: none !important;
 }
 
-.reload-header {
+.reload_header {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 2%;
 }
 
-.reload-header h2 {
+.reload_header h2 {
     margin: 0;
 }
 
-.header-btn {
+.header_btn {
     background: transparent;
     border: none;
     font-size: 1.6rem;
@@ -59,11 +59,11 @@ a {
     color: #333;
 }
 
-.header-btn:hover {
+.header_btn:hover {
     color: #000;
 }
 
-.right-panel {
+.right_panel {
     width: 20%;
     height: 100%;
     background-color: #ffffff;

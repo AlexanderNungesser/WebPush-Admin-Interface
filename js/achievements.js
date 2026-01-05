@@ -189,11 +189,11 @@ async function saveForm(e, url) {
 }
 
 function closeRightPanel() {
-    const rightPanel = document.querySelector(".right-panel");
+    const rightPanel = document.querySelector(".right_panel");
     rightPanel.classList.add("uk-hidden");
 }
 
 function openRightPanel() {
-    const rightPanel = document.querySelector(".right-panel");
+    const rightPanel = document.querySelector(".right_panel");
     rightPanel.classList.remove("uk-hidden")
 }

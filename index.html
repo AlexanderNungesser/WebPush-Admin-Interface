@@ -25,13 +25,13 @@
     <div class="layout">
         <aside id="side_navigation" swa="Navigation FROM routes.json TEMPLATE nav_webPush"></aside>
         <main class="main_content">
-            <div class="reload-header">
+            <div class="reload_header">
                 <h2>All Notifications</h2>
-                <button id="notification-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
+                <button id="notification-reload" class="header_btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
             </div>
             <div id="all_notifications" swa="Present FROM view_notifications_with_type TEMPLATE present_webPush_notifications"></div>
         </main>  
-        <aside class="right-panel">
+        <aside class="right_panel">
             <div id="notification_form_swac" swa="Form TEMPLATE form_webPush_notifications"></div>
         </aside>       
     </div>
@@ -40,19 +40,19 @@
         <a href="sites/about/imprint.html">Imprint </a>
     </footer>
    <div id="popup_content" aria-hidden="true">
-        <div id="popup-window">
-            <div class="popup-header">
-                <div class="reload-header">
+        <div id="popup_window">
+            <div class="popup_header">
+                <div class="reload_header">
                     <h2>Select Trigger</h2>
-                    <button id="popup-reload" class="header-btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
+                    <button id="popup-reload" class="header_btn" aria-label="Reload"><span uk-icon="refresh"></span></button>   
                 </div>
-                <button id="popup-close" class="header-btn" aria-label="Close"><span uk-icon="close"></span></button>
+                <button id="popup-close" class="header_btn" aria-label="Close"><span uk-icon="close"></span></button>
             </div>
             <div class="popup_content">
-                <div class="popup-left">
+                <div class="popup_left">
                     <div id="all_triggers" swa="Present FROM view_triggers TEMPLATE present_webPush_triggers"></div>
                 </div>
-                <div class="popup-right">
+                <div class="popup_right">
                     <div id="trigger_form_swac" swa="Form TEMPLATE form_webPush_trigger"></div>
                 </div>
             </div>

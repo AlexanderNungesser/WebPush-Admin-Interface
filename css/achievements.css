@@ -1,8 +1,8 @@
-.right-panel {
+.right_panel {
     justify-content: center;
 }
 
-.panel-close {
+.panel_close {
     position: absolute;
     top: 10px;
     left: 10px;
