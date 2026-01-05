@@ -13,7 +13,10 @@ function initAchievementAddButton() {
     addButton.addEventListener("click", openAchievementForm);
 
     const achievementForm = document.getElementById("achievement_form");
-    achievementForm.addEventListener("submit", e => { saveForm(e, `${window.location.origin}/WebPush/webpush/admin/achievement`) });
+    achievementForm.addEventListener("submit", e => {
+        saveForm(e, `${window.location.origin}/WebPush/webpush/admin/achievement`);
+        document.getElementById("achievement_form").reset();
+    });
 }
 
 function openAchievementForm() {
