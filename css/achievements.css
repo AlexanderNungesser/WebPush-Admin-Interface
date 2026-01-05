@@ -12,3 +12,8 @@
     font-size: 20px;
     cursor: pointer;
 }
+
+#form_display {
+    max-height: 80%;
+    overflow: auto;
+}

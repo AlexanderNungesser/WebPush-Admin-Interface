@@ -43,12 +43,12 @@ export function getConditionTemplate(conditionCounter) {
             <a class="uk-accordion-title">Condition${suffix}</a>
             <div class="uk-accordion-content uk-padding-small">
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="data_field">DATA FIELD</label>             
+                    <label class="uk-form-label" for="data_field">Data Field</label>             
                     <select class="uk-select data_field" name="type_id${suffix}" id="data_field${suffix}" required>
                     </select>
                 </div>
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="operator">OPERATOR</label>
+                    <label class="uk-form-label" for="operator">Operator</label>
                     <select class="uk-select operator" name="operator${suffix}"id="operator${suffix}" required>                      
                         <option value="=="> == </option>                  
                         <option value="!="> != </option>                     
@@ -59,7 +59,7 @@ export function getConditionTemplate(conditionCounter) {
                     </select>
                 </div>
                 <div class="uk-margin">     
-                    <label class="uk-form-label" for="threshold">THRESHOLD</label>
+                    <label class="uk-form-label" for="threshold">Threshold</label>
                     <input class="uk-input threshold" name="threshold${suffix}" id="threshold${suffix}" type="number" required>
                 </div>
                 <div class="uk-margin" id="period_div${suffix}">    

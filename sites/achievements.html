@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Analytics</title>
+    <title>Achievements</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/global.css">
@@ -28,7 +28,78 @@
         </main>
         <aside class="right-panel uk-hidden"> 
             <button id="closePanel" class="panel-close"><span uk-icon="close"></span></button>
-            <form id="condition_display" class="uk-card uk-card-default uk-padding"></form>
+            <div id="form_display" class="uk-card uk-card-default uk-padding">
+                <form id="achievement_form" class="card_form uk-hidden">
+                    <h2>New Achievement</h2>
+                    <div class="uk-text-meta uk-margin-small-top">
+                        Conditions can be added after creating achievement set
+                    </div>
+                    <hr>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="title">Title</label>
+                        <input class="uk-input" id="title" name="title" type="text" required>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="description">Description</label>
+                        <input class="uk-input" id="description" name="description" type="text" required>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="body">Body</label>
+                        <input class="uk-input" id="body" name="body" type="text" required>
+                    </div>
+                    <hr>
+                    <div class="uk-margin">
+                        <h4 class="uk-heading-bullet">Tier 1</h4>
+                        <div class="uk-margin uk-form-stacked">
+                            <label class="uk-form-label">Image</label>
+                            <div uk-form-custom="target: true">
+                                <input type="file" id="img_1" name="img_1" accept="image/*" required>
+                                <input class="uk-input" type="text" placeholder="Select file" disabled>
+                            </div>
+                        </div>
+
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="number1">XP gain</label>
+                            <input class="uk-input" type="number" id="xp_1" name="xp_1" required>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <h4 class="uk-heading-bullet">Tier 2</h4>
+                        <div class="uk-margin  uk-form-stacked">
+                            <label class="uk-form-label">Image</label>
+                            <div uk-form-custom="target: true">
+                                <input type="file" id="img_2" name="img_2" accept="image/*" required>
+                                <input class="uk-input" type="text" placeholder="Select file" disabled>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="number2">XP gain</label>
+                            <input class="uk-input" type="number" id="xp_2" name="xp_2" required>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <h4 class="uk-heading-bullet">Tier 3</h4>
+                        <div class="uk-margin uk-form-stacked">
+                            <label class="uk-form-label">Image</label>
+                            <div uk-form-custom="target: true">
+                                <input type="file" id="img_3" name="img_3" accept="image/*" required>
+                                <input class="uk-input" type="text" placeholder="Select file" disabled>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <label class="uk-form-label" for="number3">XP gain</label>
+                            <input class="uk-input" type="number" id="xp_3" name="xp_3" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="uk-margin" id="save_achievment">     
+                        <button class="uk-button uk-button-primary uk-button-small" type="submit">
+                            Save
+                        </button>
+                    </div>
+                </form>                
+                <form id="condition_form" class="card_form uk-hidden"></form>
+            </div>
         </aside>
     </div>
     <footer>

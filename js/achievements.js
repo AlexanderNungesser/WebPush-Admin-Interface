@@ -2,15 +2,35 @@ import { loadDataIntoCondition, getConditionTemplate, initConditions, initPeriod
 
 document.addEventListener('swac_components_complete', async () => {
     loadAchievementTiers();
+    initAchievementAddButton();
+    document.getElementById("closePanel").addEventListener("click", closeRightPanel);
     await initConditions();
     await initPeriods();
 });
+
+function initAchievementAddButton() {
+    const addButton = document.querySelector(".uk-accordion-title.add");
+    addButton.addEventListener("click", openAchievementForm);
+
+    const achievementForm = document.getElementById("achievement_form");
+    achievementForm.addEventListener("submit", e => { saveForm(e, `${window.location.origin}/WebPush/webpush/admin/achievement`) });
+}
+
+function openAchievementForm() {
+    const conditionForm = document.getElementById('condition_form');
+    if (!conditionForm.classList.contains("uk-hidden")) {
+        conditionForm.classList.add("uk-hidden")
+    }
+    const achievementForm = document.getElementById('achievement_form');
+    achievementForm.classList.remove("uk-hidden");
+    openRightPanel();
+}
 
 async function loadAchievementTiers() {
     const tiers = Array.from(document.querySelectorAll(".tier-row-items"));
     const withoutPlaceholders = tiers.slice(3);
     for (const tier of withoutPlaceholders) {
-        tier.querySelector('.tier-item-add').addEventListener("click", () => { addCondition(tier.dataset.t_id) });
+        tier.querySelector(".tier-item.add").addEventListener("click", () => { addCondition(tier.dataset.t_id) });
         const conditions = await getConditionsForTrigger(tier.dataset.t_id);
         for (const condition of conditions) {
             const div = document.createElement("div");
@@ -48,18 +68,8 @@ async function clickCondition(conditionId) {
         const response = await fetch(`${window.location.origin}/SmartDataAirquality/smartdata/records/condition?storage=gamification&filter=id,eq,${conditionId}`);
         const data = (await response.json()).records[0];
         initConditionForm();
-        loadDataIntoCondition(data, document.getElementById("condition_display"));
-
-        const container = document.getElementById("condition_display");
-        const title = container.querySelector(".uk-accordion-title");
-
-        if (title) {
-            const info = document.createElement("div");
-            info.className = "uk-text-meta uk-margin-small-top";
-            info.textContent = "Changing values here won't change the actual values in the database!";
-            title.insertAdjacentElement("afterend", info);
-        }
-
+        loadDataIntoCondition(data, document.getElementById("form_display"));
+        disableConditionForm();
         openRightPanel();
     } catch (err) {
         console.error("Error loading condition: ", err);
@@ -68,11 +78,24 @@ async function clickCondition(conditionId) {
 }
 
 function initConditionForm() {
-    const conditionDisplay = document.getElementById('condition_display');
-    conditionDisplay.innerHTML = "";
-    conditionDisplay.prepend(getConditionTemplate(0));
+    const achievementForm = document.getElementById('achievement_form');
+    if (!achievementForm.classList.contains("uk-hidden")) {
+        achievementForm.classList.add("uk-hidden")
+    }
+    const conditionForm = document.getElementById('condition_form');
+    conditionForm.innerHTML = "";
+    conditionForm.prepend(getConditionTemplate(0));
+    conditionForm.classList.remove("uk-hidden");
     document.getElementById("closePanel").addEventListener("click", closeRightPanel);
     document.querySelector('.remove_condition_btn').addEventListener("click", deleteCondition);
+}
+
+function disableConditionForm() {
+    const conditionForm = document.getElementById('condition_form');
+    const inputs = conditionForm.querySelectorAll('input, select, textarea')
+    inputs.forEach(el => {
+        el.disabled = true;
+    });
 }
 
 function deleteCondition() {
@@ -105,22 +128,22 @@ function addCondition(triggerId) {
     currentTriggerId = triggerId;
     initConditionForm();
     openRightPanel();
-    const conditionDisplay = document.getElementById("condition_display");
-    conditionDisplay.querySelector('.uk-accordion-title').innerHTML = "New Condition";
-    conditionDisplay.querySelector('.remove_condition_btn').remove();
+    const conditionForm = document.getElementById("condition_form");
+    conditionForm.querySelector('.uk-accordion-title').innerHTML = "New Condition";
+    conditionForm.querySelector('.remove_condition_btn').remove();
     const saveButton = document.createElement("button");
     saveButton.type = "submit";
     saveButton.classList.add("uk-button", "uk-button-primary", "uk-button-small");
     const text = document.createTextNode("Save");
     saveButton.appendChild(text);
-    conditionDisplay.addEventListener("submit", e => { saveCondition(e) });
-    const container = conditionDisplay.querySelector("#buttons");
+    conditionForm.addEventListener("submit", e => { saveForm(e, `${window.location.origin}/WebPush/webpush/admin/trigger/condition/${currentTriggerId}`) });
+    const container = conditionForm.querySelector("#buttons");
     if (container) {
         container.appendChild(saveButton);
     }
 }
 
-async function saveCondition(e) {
+async function saveForm(e, url) {
     e.preventDefault()
     try {
         const payload = Object.fromEntries(
@@ -130,8 +153,7 @@ async function saveCondition(e) {
                 return [k, v];
             })
         );
-        payload.trigger_id = Number(currentTriggerId);
-        const res = await fetch(`${window.location.origin}/WebPush/webpush/admin/trigger/condition`, {
+        const res = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -140,12 +162,13 @@ async function saveCondition(e) {
         });
 
         if (!res.ok) {
-            const err = await res.text();
-            throw new Error(err);
+            const text = await res.text();
+            const message = text || `${res.status} ${res.statusText}`;
+            throw new Error(message);
         }
 
         UIkit.notification({
-            message: `Successfully created new condition`,
+            message: `Successfully created`,
             status: 'info',
             timeout: window.swac.config.notifyDuration,
             pos: 'top-center'
@@ -159,7 +182,7 @@ async function saveCondition(e) {
             pos: 'top-center'
         });
     }
-    closeRightPanel();
+    window.location.reload();
 }
 
 function closeRightPanel() {
